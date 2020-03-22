@@ -10,5 +10,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :category, presence: true
+  validates :role, presence: true
+
+  enum role: [:restaurator, :supplier]
+
 end
