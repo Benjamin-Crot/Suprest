@@ -1,0 +1,6 @@
+<h1>
+  <%= @restaurant.name %>
+  <%= link_to "", restaurant_path(@restaurant), method: :delete, data: { confirm: "Êtes-vous sur de supprimer #{@restaurant.name} ?" }, class: "fas fa-trash-alt" %>
+  <%= link_to "", edit_restaurant_path(@restaurant), class: "far fa-edit" %>
+</h1>
+<h2><%= @restaurant.address %></h2>

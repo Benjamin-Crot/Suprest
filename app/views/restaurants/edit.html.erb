@@ -1,0 +1,9 @@
+<h1>Modification de <%= @restaurant.name %></h1>
+
+<div class="form">
+  <%= simple_form_for(@restaurant) do |f| %>
+    <%= f.input :name, label: false, placeholder: 'Nom du restaurant'%>
+    <%= f.input :address, label: false, placeholder: 'Adresse'%>
+    <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
+  <% end %>
+</div>
