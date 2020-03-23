@@ -1,4 +1,4 @@
-class RestaurantPolicy < ApplicationPolicy
+class SupplierPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all

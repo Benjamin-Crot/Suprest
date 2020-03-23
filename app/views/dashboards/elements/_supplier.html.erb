@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <h2>
+    Mes entreprises
+    <%= link_to "", new_supplier_path, class: "fas fa-plus-circle" %>
+    </h2>
+  </div>
+  <ul>
+    <% current_user.suppliers.each do |supplier|%>
+      <li>
+        <%= link_to supplier.name,  supplier_path(supplier) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

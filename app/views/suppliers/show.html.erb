@@ -1,0 +1,6 @@
+<h1>
+  <%= @supplier.name %>
+  <%= link_to "", supplier_path(@supplier), method: :delete, data: { confirm: "Êtes-vous sur de supprimer #{@supplier.name} ?" }, class: "fas fa-trash-alt" %>
+  <%= link_to "", edit_supplier_path(@supplier), class: "far fa-edit" %>
+</h1>
+<h2><%= @supplier.address %></h2>
