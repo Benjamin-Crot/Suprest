@@ -18,6 +18,7 @@ class DashboardsController < ApplicationController
     if @user.role == "Restaurateur"
       render "dashboard.restaurator"
     elsif @user.role == "Fournisseur"
+      @supplier = @user.suppliers.first
       render "dashboard.supplier"
     end
   end

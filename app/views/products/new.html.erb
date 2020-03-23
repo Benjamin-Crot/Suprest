@@ -1,0 +1,11 @@
+<h1>Proposer un nouveau produit</h1>
+
+
+<div class="form">
+  <%= simple_form_for [@supplier, @product] do |f| %>
+    <%= f.input :name, label: false, placeholder: "Nom du produit"%>
+    <%= f.input :description, label: false, placeholder: 'Description'%>
+    <%= f.input :stock, label: false, placeholder: 'Stock'%>
+    <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
+  <% end %>
+</div>
