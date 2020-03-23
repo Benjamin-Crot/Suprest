@@ -10,14 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
   def create
-    # raise
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      Dashboard.create!(user: @user)
+      sign_in(@user)
+      redirect_to after_sign_in_path_for(@user)
+      # redirect_to dashboard_path(@user)
     else
       render :new
     end
@@ -71,6 +70,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :email, :category, :photo)
+    params.require(:user).permit(:first_name, :last_name, :password, :email, :role, :photo)
   end
 end

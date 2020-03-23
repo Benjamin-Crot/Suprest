@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :restaurants, dependent: :destroy
+  has_one :dashboard
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -11,7 +12,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true
-
-  enum role: [:restaurator, :supplier]
+  validates_inclusion_of :role, in: [ "Restaurateur", "Fournisseur" ]
 
 end

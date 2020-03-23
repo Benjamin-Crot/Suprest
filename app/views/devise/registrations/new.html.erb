@@ -15,7 +15,7 @@
     <%= f.input :photo,
                 as: :file,
                 required: true %>
-    <%= f.input :category, as: :radio_buttons, collection: [['0', 'Restaurateur'], ['1', 'Fournisseur']], label_method: :second, value_method: :first%>
+    <%= f.input :role, collection: [ "Restaurateur", "Fournisseur" ]%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
