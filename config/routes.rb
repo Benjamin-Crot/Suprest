@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   resources :restaurants do
   end
 
+  resources :suppliers do
+  end
+
 
 end
