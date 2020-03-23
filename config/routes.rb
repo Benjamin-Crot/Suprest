@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :suppliers do
+    resources :products
   end
 
 
