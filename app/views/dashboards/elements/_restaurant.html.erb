@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <h2>
+    Mes restaurants
+    <%= link_to "", new_restaurant_path, class: "fas fa-plus-circle" %>
+    </h2>
+  </div>
+  <ul>
+    <% current_user.restaurants.each do |restaurant|%>
+      <li>
+        <%= link_to restaurant.name,  restaurant_path(restaurant) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
