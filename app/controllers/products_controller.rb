@@ -1,54 +1,62 @@
 class ProductsController < ApplicationController
+
+  def index
+    @products = policy_scope(Product).order(created_at: :desc)
+  end
+
+  def my_products
+    @account = Account.find(params[:account_id])
+    @products = Product.where("account_id" == @account.id)
+    authorize @products
+  end
+
   def new
-    @user = current_user
-    @supplier = @user.suppliers.first
+    @account = Account.find(params[:account_id])
     @product = Product.new
     authorize @product
   end
 
   def create
+    @account = Account.find(params[:account_id])
     @product = Product.new(product_params)
-    @user = current_user
-    @supplier = @user.suppliers.first
-    @supplier = Supplier.find(params[:supplier_id])
-    @product.supplier_id = @supplier.id
     authorize @product
     if @product.save
-      redirect_to root_path
+      redirect_to account_path(@account)
     else
-      raise
       render :new
     end
   end
 
   def show
-    @supplier = Supplier.find(params[:id])
-    authorize @supplier
+    @product = Product.find(params[:id])
+    authorize @product
   end
 
   def edit
-    @supplier = Supplier.find(params[:id])
-    authorize @supplier
-    @supplier.user = current_user
+    @account = Account.find(params[:account_id])
+    @product = Product.find(params[:id])
+    authorize @product
   end
 
   def update
-    @supplier = Supplier.find(params[:id])
-    authorize @supplier
-    @supplier.update(supplier_params)
-    redirect_to root_path
+    @account = Account.find(params[:account_id])
+    @product = Product.find(params[:id])
+    authorize @product
+    @product.update(product_params)
+    redirect_to account_path(@account)
   end
 
   def destroy
-    @supplier = Supplier.find(params[:id])
-    authorize @supplier
-    @supplier.destroy
-    redirect_to root_path
+    @account = Account.find(params[:account_id])
+    @product = Product.find(params[:id])
+    authorize @product
+    @product.destroy
+    redirect_to account_path(@account)
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :stock)
+    params.require(:product).permit(:name, :description, :stock, :category, :entity, :photo)
   end
 end

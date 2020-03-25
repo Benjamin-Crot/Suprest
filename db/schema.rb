@@ -1,4 +1,4 @@
-s# This file is auto-generated from the current state of the database. Instead
+# This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,7 +10,7 @@ s# This file is auto-generated from the current state of the database. Instead
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_151256) do
+ActiveRecord::Schema.define(version: 2020_03_25_213259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,14 +51,24 @@ ActiveRecord::Schema.define(version: 2020_03_25_151256) do
     t.index ["account_id"], name: "index_dashboards_on_account_id"
   end
 
+  create_table "pricings", force: :cascade do |t|
+    t.integer "amount_cents"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_pricings_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "stock"
-    t.bigint "supplier_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["supplier_id"], name: "index_products_on_supplier_id"
+    t.bigint "account_id"
+    t.string "category"
+    t.integer "stock"
+    t.string "entity"
+    t.index ["account_id"], name: "index_products_on_account_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -112,7 +122,8 @@ ActiveRecord::Schema.define(version: 2020_03_25_151256) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "dashboards", "accounts"
-  add_foreign_key "products", "suppliers"
+  add_foreign_key "pricings", "products"
+  add_foreign_key "products", "accounts"
   add_foreign_key "profiles", "users"
   add_foreign_key "restaurants", "users"
   add_foreign_key "roles", "accounts"

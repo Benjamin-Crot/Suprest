@@ -1,0 +1,17 @@
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80)">
+  Marché
+</div>
+
+<% @products.each do |product| %>
+  <%= link_to product_path(product) do %>
+    <div class="card-product">
+      <%= cl_image_tag product.photo.key %>
+      <div class="card-product-infos">
+        <h2><%= product.name %></h2>
+        <p><%= product.description %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
