@@ -5,6 +5,10 @@ class RolePolicy < ApplicationPolicy
     end
   end
 
+  def welcome?
+    return true
+  end
+
   def new?
     return true
   end

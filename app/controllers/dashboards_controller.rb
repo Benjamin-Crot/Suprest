@@ -11,11 +11,9 @@ class DashboardsController < ApplicationController
   #   end
   # end
 
-
-
   def welcome
     @user = current_user
-    @dashboard = @user.dashboard
+    if @user
     authorize @dashboard
   end
 
@@ -32,6 +30,12 @@ class DashboardsController < ApplicationController
     else
       render welcome_dashboards
     end
+  end
+
+  def configuration
+    @user = current_user
+    @dashboard = @user.dashboard
+    authorize @dashboard
   end
 
   def list_users_roles

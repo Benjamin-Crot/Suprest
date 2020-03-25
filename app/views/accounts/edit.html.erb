@@ -1,8 +1,17 @@
-<h2>
-  Membres de l'équipe
-  <% if is_admin? %>
-    <%= link_to "", new_account_role_path(@account), class: "fas fa-plus-circle" %>
+<h2>Modifier le compte</h2>
+
+<div class="form">
+  <%= simple_form_for(@account) do |f| %>
+    <%= f.input :name, label: false, placeholder: "Nom de l'entreprise"%>
+    <%= f.input :address, label: false, placeholder: 'Adresse'%>
+    <%= f.input :category, collection: [ "Restaurateur", "Fournisseur" ]%>
+    <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
   <% end %>
+</div>
+
+<h2>
+  Modifier les rôles
+  <%= link_to "", new_account_role_path(@account), class: "fas fa-plus-circle" %>
 </h2>
 
 <div>
@@ -25,5 +34,3 @@
     <% end %>
   </table>
 </div>
-
-

@@ -1,3 +1,8 @@
-<h1>Dashboard Fournisseur</h1>
+<h1>
+  Dashboard Fournisseur
+  <% if is_admin? %>
+    <%= link_to "", configuration_dashboard_path(@dashboard), class: "fas fa-cog" %>
+  <% end %>
+</h1>
 
 <%= render 'dashboards/elements/role' %>
