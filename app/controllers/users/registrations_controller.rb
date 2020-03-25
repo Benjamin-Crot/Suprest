@@ -13,9 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(user_params)
     if @user.save
-      Dashboard.create!(user: @user)
       sign_in(@user)
-      redirect_to after_sign_in_path_for(@user)
+      Profile.create!(user: @user)
+      # redirect_to after_sign_in_path_for(@user)
     else
       render :new
     end
@@ -69,6 +69,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :email, :role, :photo)
+    params.require(:user).permit(:first_name, :last_name, :password, :email, :photo)
   end
 end

@@ -1,5 +1,17 @@
 class RolesController < ApplicationController
 
+  def welcome
+    @user = current_user
+    if @user.roles.count == 1
+      @role = @user.roles.first
+      @account = Account.find(@user.roles.first.account_id)
+      redirect_to account_path(@account)
+    else
+      authorize @role
+
+    end
+  end
+
   def new
     @user = current_user
     @role = Role.new

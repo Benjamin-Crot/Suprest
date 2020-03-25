@@ -20,4 +20,8 @@ class DashboardPolicy < ApplicationPolicy
   def welcome?
     return true
   end
+
+  def configuration?
+    return true
+  end
 end
