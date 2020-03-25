@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :dashboards, only: [:create, :show] do
     collection do
       get 'welcome'
+      get 'configuration'
     end
   end
 
