@@ -1,16 +1,15 @@
 class RolesController < ApplicationController
 
-  def welcome
-    @user = current_user
-    if @user.roles.count == 1
-      @role = @user.roles.first
-      @account = Account.find(@user.roles.first.account_id)
-      redirect_to account_path(@account)
-    else
-      authorize @role
-
-    end
-  end
+  # def welcome
+  #   @user = current_user
+  #   if @user.roles.count == 1
+  #     @role = @user.roles.first
+  #     @account = Account.find(@user.roles.first.account_id)
+  #     redirect_to account_path(@account)
+  #   else
+  #     authorize @role
+  #   end
+  # end
 
   def new
     @user = current_user
@@ -28,7 +27,7 @@ class RolesController < ApplicationController
       @role.account_id = @account.id
       @role.user_id = User.find_by(email: params[:role][:user]).id
       if @role.save
-        redirect_to root_path
+        redirect_to account_path(@account)
       else
         render :new
       end
@@ -49,7 +48,7 @@ class RolesController < ApplicationController
     @account = Account.find(params[:account_id])
 
     if @role.update(role_params)
-      redirect_to root_path
+      redirect_to account_path(@account)
     else
       render :edit
     end
@@ -58,7 +57,7 @@ class RolesController < ApplicationController
   def destroy
     @role = Role.find(params[:id])
     role.destroy
-    redirect_to root_path
+    redirect_to account_path(@account)
   end
 
   def convert_is_admin_to_string(role)

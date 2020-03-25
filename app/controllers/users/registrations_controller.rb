@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @user.save
       sign_in(@user)
       Profile.create!(user: @user)
-      # redirect_to after_sign_in_path_for(@user)
+      redirect_to after_sign_in_path_for(@user)
     else
       render :new
     end

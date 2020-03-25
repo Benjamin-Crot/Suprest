@@ -16,7 +16,7 @@ class AccountsController < ApplicationController
       # @is_admin = true
       Role.create!(user: @user, account: @account, is_admin: true)
       Dashboard.create!(account: @account)
-      redirect_to root_path
+      redirect_to account_path(@account)
     else
       render :new
     end

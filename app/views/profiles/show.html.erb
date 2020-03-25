@@ -1,1 +1,11 @@
-show.html.erb
+<h1>Profile</h1>
+
+<p><%= current_user.first_name %></p>
+
+<h2>Mes organisations</h2>
+<%= link_to "Créer une organisation", new_account_path, class: "btn-gradient" %>
+
+<% @accounts.each do |account| %>
+  <%= link_to account.name, account_path(account), class: "btn-gradient" %>
+<% end %>
+
