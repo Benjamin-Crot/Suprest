@@ -1,0 +1,30 @@
+<h2>
+  Membres de l'équipe
+  <% if is_admin? %>
+    <%= link_to "", new_account_role_path(@account), class: "fas fa-plus-circle" %>
+    <%#= link_to "", edit_account_role_path(@account), class: "fas fa-edit" %>
+  <% end %>
+</h2>
+
+<div>
+  <table>
+   <tr>
+       <td>Prénom</td>
+       <td>Nom</td>
+       <td>Rôle</td>
+   </tr>
+   <% list_users_roles.each do |role|%>
+     <tr>
+         <td><%= role.user.first_name %></td>
+         <td><%= role.user.last_name %></td>
+         <td>
+          <%= convert_is_admin_to_string(role) %>
+          <%= link_to "", edit_account_role_path(@account, role), class: "fas fa-edit" %>
+          <%= link_to "", account_role_path(@account, role), method: :delete, data: { confirm: "Êtes-vous sur ?" }, class: "fas fa-trash-alt" %>
+         </td>
+     </tr>
+    <% end %>
+  </table>
+</div>
+
+
