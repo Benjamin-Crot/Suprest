@@ -5,7 +5,16 @@ Rails.application.routes.draw do
 
   resources :accounts do
     resources :roles
+    resources :products, only: [:new, :create, :edit, :update, :destroy] do
+      collection do
+        get 'my_products'
+      end
+    end
   end
+
+  resources :products, only: [:index, :show]
+
+  resources :pricings
 
 
 end

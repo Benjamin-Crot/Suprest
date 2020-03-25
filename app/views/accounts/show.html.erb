@@ -3,4 +3,8 @@
   <%= link_to "", edit_account_path(@account), class: "fas fa-cog" %>
 </h1>
 
+<%= link_to "Faire son marché", products_path, class: "btn-gradient" %>
+<%= link_to "Ajouter un produit", new_account_product_path(@account), class: "btn-gradient" %>
+<%= link_to "Mes produits", my_products_account_products_path(@account), class: "btn-gradient" %>
+
 

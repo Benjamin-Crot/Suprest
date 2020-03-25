@@ -1,6 +1,3 @@
-<h1>Proposer un nouveau produit</h1>
-
-
 <div class="form">
   <%= simple_form_for [@account, @product] do |f| %>
     <%= f.input :name, label: false, placeholder: "Nom du produit"%>
@@ -13,4 +10,4 @@
   <% end %>
 </div>
 
-
+<%= link_to "Supprimer", account_product_path(@account, @product), method: :delete, data: { confirm: "Êtes-vous sur de supprimer #{@product.name} ?" }, class: "btn-gradient" %>

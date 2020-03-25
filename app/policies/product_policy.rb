@@ -5,6 +5,14 @@ class ProductPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    return true
+  end
+
+  def my_products?
+    return true
+  end
+
   def new?
     return true
   end
