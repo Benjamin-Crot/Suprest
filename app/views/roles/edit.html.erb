@@ -1,0 +1,16 @@
+<h1>Modifier le rôle de l'utilisateur ou le supprimer de l'organisation</h1>
+
+<div>
+  <%= @role.user.first_name %>
+  <%= @role.user.last_name %>
+  <%= convert_is_admin_to_string(@role) %>
+
+</div>
+
+  <div class="form">
+    <%= simple_form_for([@account, @role]) do |f| %>
+      <%= f.collection_radio_buttons :is_admin, [[true, 'Admin'], [false, 'basic']], :first, :last%>
+      <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
+    <% end %>
+  </div>
+

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_162021) do
+ActiveRecord::Schema.define(version: 2020_03_24_151258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +70,16 @@ ActiveRecord::Schema.define(version: 2020_03_23_162021) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_admin", default: false
+    t.index ["account_id"], name: "index_roles_on_account_id"
+    t.index ["user_id"], name: "index_roles_on_user_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -90,5 +108,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_162021) do
   add_foreign_key "dashboards", "users"
   add_foreign_key "products", "suppliers"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "roles", "accounts"
+  add_foreign_key "roles", "users"
   add_foreign_key "suppliers", "users"
 end

@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       Dashboard.create!(user: @user)
       sign_in(@user)
       redirect_to after_sign_in_path_for(@user)
-      # redirect_to dashboard_path(@user)
     else
       render :new
     end

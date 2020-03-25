@@ -1,0 +1,10 @@
+
+  <div class="form">
+    <%= simple_form_for([@account, @role]) do |f| %>
+      <%= f.collection_radio_buttons :is_admin, [[true, 'Admin'], [false, 'basic']], :first, :last%>
+
+      <%= f.input :user, label: false, placeholder: "ajouter un email"%>
+      <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
+    <% end %>
+  </div>
+

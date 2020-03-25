@@ -1,0 +1,10 @@
+<h1>Nouvelle organisation</h1>
+
+<div class="form">
+  <%= simple_form_for(@account) do |f| %>
+    <%= f.input :name, label: false, placeholder: "Nom de l'entreprise"%>
+    <%= f.input :address, label: false, placeholder: 'Adresse'%>
+    <%= f.input :category, collection: [ "Restaurateur", "Fournisseur" ]%>
+    <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
+  <% end %>
+</div>
