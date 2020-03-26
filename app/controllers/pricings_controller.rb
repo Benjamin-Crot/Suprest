@@ -1,5 +1,6 @@
 class PricingsController < ApplicationController
   def index
+    @account = Account.find(params[:account_id])
     @product = Product.find(params[:product_id])
     @pricings = policy_scope(@product.pricing).order(created_at: :asc)
   end
@@ -32,17 +33,19 @@ class PricingsController < ApplicationController
   def update
     @pricing = Pricing.find(params[:id])
     @product = Product.find(@pricing.product_id)
+    @account = Account.find(@product.account_id)
     authorize @pricing
     @pricing.update(pricing_params)
-    redirect_to product_pricings_path(@product)
+    redirect_to account_product_pricings_path(@account, @product)
   end
 
   def destroy
     @pricing = Pricing.find(params[:id])
     @product = Product.find(@pricing.product_id)
+    @account = Account.find(@product.account_id)
     authorize @pricing
     @pricing.destroy
-    redirect_to product_pricings_path(@product)
+    redirect_to account_product_pricings_path(@account, @product)
   end
 
   private

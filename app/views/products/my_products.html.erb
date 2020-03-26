@@ -1,7 +1,7 @@
 <h1>Mes produits</h1>
 
 <% @products.each do |product| %>
-  <%= link_to edit_account_product_path(@account, product) do %>
+  <%= link_to edit_product_path(product) do %>
     <div class="card-product">
       <%= cl_image_tag product.photo.key %>
       <div class="card-product-infos">

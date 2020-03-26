@@ -3,7 +3,7 @@
 </div>
 
 <% @products.each do |product| %>
-  <%= link_to product_path(product) do %>
+  <%= link_to account_product_path(@account, product) do %>
     <div class="card-product">
       <%= cl_image_tag product.photo.key %>
       <div class="card-product-infos">
