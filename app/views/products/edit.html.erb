@@ -1,5 +1,5 @@
 <div class="form">
-  <%= simple_form_for [@account, @product] do |f| %>
+  <%= simple_form_for(@product) do |f| %>
     <%= f.input :name, label: false, placeholder: "Nom du produit"%>
     <%= f.input :description, label: false, placeholder: 'Description'%>
     <%= f.input :category, label: false, placeholder: "Catégorie", collection: [ "Légume", "Fruit", "Viande", "Poisson", "Autre" ]%>
@@ -10,5 +10,5 @@
   <% end %>
 </div>
 
-<%= link_to "Supprimer", account_product_path(@account, @product), method: :delete, data: { confirm: "Êtes-vous sur de supprimer #{@product.name} ?" }, class: "btn-gradient" %>
-<%= link_to "Modifier le système de prix", product_pricings_path(@product), class: "btn-gradient" %>
+<%= link_to "Supprimer", product_path(@product), method: :delete, data: { confirm: "Êtes-vous sur de supprimer #{@product.name} ?" }, class: "btn-gradient" %>
+<%= link_to "Modifier le système de prix", account_product_pricings_path(@account, @product), class: "btn-gradient" %>

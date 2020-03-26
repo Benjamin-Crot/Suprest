@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product).order(created_at: :desc)
+    @account = Account.find(params[:account_id])
   end
 
   def my_products
@@ -30,12 +31,13 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @account = Account.find(params[:account_id])
     authorize @product
   end
 
   def edit
-    @account = Account.find(params[:account_id])
     @product = Product.find(params[:id])
+    @account = Account.find(@product.account_id)
     authorize @product
   end
 
