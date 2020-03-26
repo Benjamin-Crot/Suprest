@@ -19,9 +19,10 @@ class ProductsController < ApplicationController
   def create
     @account = Account.find(params[:account_id])
     @product = Product.new(product_params)
+    @product.account_id = @account.id
     authorize @product
     if @product.save
-      redirect_to account_path(@account)
+      redirect_to new_product_pricing_path(@product)
     else
       render :new
     end
@@ -54,9 +55,16 @@ class ProductsController < ApplicationController
     redirect_to account_path(@account)
   end
 
+  # def pricing
+  #   @product = Product.find(params[:id])
+  #   authorize @product
+  #   @product.destroy
+  #   redirect_to account_path(@account)
+  # end
+
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :stock, :category, :entity, :photo)
+    params.require(:product).permit(:name, :description, :stock, :category, :entity, :photo, :account)
   end
 end
