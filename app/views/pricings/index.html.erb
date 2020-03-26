@@ -1,0 +1,19 @@
+<div>
+  <table>
+   <tr>
+       <td>Montant</td>
+       <td>Quantité</td>
+       <%# raise %>
+   </tr>
+   <% @pricings.each do |pricing| %>
+     <tr>
+         <td><%= pricing.amount_cents %></td>
+         <td><%= pricing.quantity %></td>
+         <td><%= link_to "", edit_pricing_path(pricing), class: "far fa-edit" %></td>
+         <td><%= link_to "", pricing_path(pricing), method: :delete, data: { confirm: "Êtes-vous sur ?" }, class: "fas fa-trash-alt" %></td>
+     </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to "", new_product_pricing_path(@product), class: "fas fa-plus-circle" %>

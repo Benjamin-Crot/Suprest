@@ -11,3 +11,4 @@
 </div>
 
 <%= link_to "Supprimer", account_product_path(@account, @product), method: :delete, data: { confirm: "Êtes-vous sur de supprimer #{@product.name} ?" }, class: "btn-gradient" %>
+<%= link_to "Modifier le système de prix", product_pricings_path(@product), class: "btn-gradient" %>

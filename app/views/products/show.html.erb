@@ -1,13 +1,27 @@
 <h1>Show</h1>
-
-<%= cl_image_tag @product.photo.key %>
-
-
-<p><%= @product.name %></p>
-<p><%= @product.description %></p>
-<p><%= @product.category %></p>
-<p><%= @product.stock %></p>
-
+<div>
+  <%= cl_image_tag @product.photo.key, :transformation => {:width=>200, :height=>200, :crop=>"fill"} %>
+  <p><%= @product.name %></p>
+  <p><%= @product.description %></p>
+  <p><%= @product.category %></p>
+  <p><%= @product.stock %></p>
+</div>
 
 
-
+<h2>Prix</h2>
+<div>
+  <table>
+   <tr>
+       <td>Montant</td>
+       <td>Quantité</td>
+       <%# raise %>
+   </tr>
+   <% @product.pricing.each do |pricing| %>
+     <tr>
+         <td><%= pricing.amount_cents %></td>
+         <td><%= pricing.quantity %></td>
+         <td><%= link_to "Ajouter à mon panier", edit_pricing_path(pricing), class: "btn-gradient" %></td>
+     </tr>
+    <% end %>
+  </table>
+</div>
