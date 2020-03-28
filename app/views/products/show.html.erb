@@ -12,21 +12,23 @@
   <table>
    <tr>
        <td>Montant</td>
-       <td>Quantité</td>
+       <td>Quantité minimum</td>
+       <td>Quantité maximum</td>
        <%# raise %>
    </tr>
    <% @product.pricing.each do |pricing| %>
      <tr>
-         <td><%= pricing.amount_cents %></td>
-         <td><%= pricing.quantity %></td>
-         <td><%= link_to "Ajouter à mon panier", edit_pricing_path(pricing), class: "btn-gradient" %></td>
+        <td><%= pricing.amount_cents %></td>
+        <td><%= pricing.min_quantity %></td>
+        <td><%= pricing.max_quantity %></td>
+        <td><%= link_to "Ajouter à mon panier", edit_pricing_path(pricing), class: "btn-gradient" %></td>
      </tr>
     <% end %>
   </table>
 </div>
 
 <div class="form">
-  <%= simple_form_for [@account, @product] do |f| %>
+  <%= simple_form_for [@account, @product, @item] do |f| %>
     <%= f.input :quantity, label: false, placeholder: "Quantité", as: :numeric, input_html: { min: 0 } %>
 
     <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>

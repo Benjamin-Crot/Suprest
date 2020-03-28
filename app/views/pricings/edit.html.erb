@@ -3,7 +3,8 @@
 <div class="form">
   <%= simple_form_for (@pricing) do |f| %>
     <%#= f.input :amount_cents, label: false, placeholder: "Prix", as: :numeric, input_html: { min: 0 } %>
-    <%= f.input :quantity, label: false, placeholder: 'Quantité'%>
+    <%= f.input :min_quantity, label: false, placeholder: 'Quantité'%>
+    <%= f.input :max_quantity, label: false, placeholder: 'Quantité'%>
     <%= f.number_field :amount_cents, value: number_to_currency(f.object.amount_cents.to_f, delimiter: '', unit: '€'), step: :any %>
     <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
   <% end %>

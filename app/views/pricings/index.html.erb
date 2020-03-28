@@ -2,15 +2,16 @@
   <table>
    <tr>
        <td>Montant</td>
-       <td>Quantité</td>
-       <%# raise %>
+       <td>Quantité minimum</td>
+       <td>Quantité maximum</td>
    </tr>
    <% @pricings.each do |pricing| %>
      <tr>
-         <td><%= pricing.amount_cents %></td>
-         <td><%= pricing.quantity %></td>
-         <td><%= link_to "", edit_pricing_path(pricing), class: "far fa-edit" %></td>
-         <td><%= link_to "", pricing_path(pricing), method: :delete, data: { confirm: "Êtes-vous sur ?" }, class: "fas fa-trash-alt" %></td>
+        <td><%= pricing.amount_cents %></td>
+        <td><%= pricing.min_quantity %></td>
+        <td><%= pricing.max_quantity %></td>
+        <td><%= link_to "", edit_pricing_path(pricing), class: "far fa-edit" %></td>
+        <td><%= link_to "", pricing_path(pricing), method: :delete, data: { confirm: "Êtes-vous sur ?" }, class: "fas fa-trash-alt" %></td>
      </tr>
     <% end %>
   </table>
