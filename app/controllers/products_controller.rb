@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   def index
     @products = policy_scope(Product).order(created_at: :desc)
     @account = Account.find(params[:account_id])
+    @orders = Order.where(status: false, account_id: @account.id)
   end
 
   def my_products
@@ -33,6 +34,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @account = Account.find(params[:account_id])
     @item = Item.new
+    @orders = Order.where(status: false, account_id: @account.id)
     authorize @product
   end
 
