@@ -32,6 +32,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @account = Account.find(params[:account_id])
+    @item = Item.new
     authorize @product
   end
 
