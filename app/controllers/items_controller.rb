@@ -50,6 +50,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    @account = Account.find(params[:account_id])
+    @product = Product.find(params[:product_id])
+    @item.quantity = params[:item][:quantity]
+    authorize @item
+    @item.update(item_params)
+  end
+
   helper_method :item_price
 
   private
