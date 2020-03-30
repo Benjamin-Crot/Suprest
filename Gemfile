@@ -34,6 +34,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
+gem 'bootstrap', '~> 4.4.1'
 
 group :development, :test do
   gem 'pry-byebug'
