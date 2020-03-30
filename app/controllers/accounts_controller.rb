@@ -4,6 +4,7 @@ class AccountsController < ApplicationController
   end
 
   def new
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @account = Account.new
     authorize @account
   end
@@ -23,11 +24,15 @@ class AccountsController < ApplicationController
   end
 
   def show
+    @roles = Role.where(user: current_user)
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
+    authorize @accounts
     @account = Account.find(params[:id])
     authorize @account
   end
 
   def edit
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @account = Account.find(params[:id])
     authorize @account
   end
@@ -47,6 +52,7 @@ class AccountsController < ApplicationController
   end
 
   def list_users_roles
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @roles = Role.where("account_id" == @account.id)
   end
 

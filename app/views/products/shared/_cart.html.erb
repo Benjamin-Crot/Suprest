@@ -1,0 +1,17 @@
+<a href="#cart-item" data-toggle="collapse" aria-expanded="false">
+  <span>Mon panier</span>
+  <i class="fas fa-shopping-cart align-middle" style="font-size:20px; vertical-align: middle;"></i>
+</a>
+
+<ul class="collapse" id="cart-item">
+  <% @orders.each do |order| %>
+    <li>
+      <%= order.supplier %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to "Finaliser mon panier", account_orders_path(@account) %>
+  </li>
+</ul>
+
+

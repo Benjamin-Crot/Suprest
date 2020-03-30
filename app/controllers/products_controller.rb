@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @products = policy_scope(Product).order(created_at: :desc)
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
@@ -13,6 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @account = Account.find(params[:account_id])
     @product = Product.new
     authorize @product
@@ -31,6 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @product = Product.find(params[:id])
     @account = Account.find(params[:account_id])
     @item = Item.new
@@ -39,6 +42,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @product = Product.find(params[:id])
     @account = Account.find(@product.account_id)
     authorize @product
