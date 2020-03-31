@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
 
   resources :pricings, only: [:edit, :update, :destroy]
-  resources :orders, only: [:edit, :update, :destroy]
+  resources :orders, only: [:edit, :update, :destroy] do
+    resources :steps, only: [:create]
+  end
   resources :items, only: [:edit, :update, :destroy]
 end
