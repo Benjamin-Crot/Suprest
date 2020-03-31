@@ -58,6 +58,15 @@ class ItemsController < ApplicationController
     @item.update(item_params)
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    authorize @item
+    @order = Order.find(@item.order_id)
+    @account = Account.find(@order.account_id)
+    @item.destroy
+    redirect_to account_orders_path(@account)
+  end
+
   helper_method :item_price
 
   private

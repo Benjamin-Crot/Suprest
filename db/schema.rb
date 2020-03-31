@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_164658) do
+ActiveRecord::Schema.define(version: 2020_03_30_225348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,15 @@ ActiveRecord::Schema.define(version: 2020_03_27_164658) do
     t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
+  create_table "steps", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.string "name"
+    t.datetime "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_steps_on_order_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -153,5 +162,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_164658) do
   add_foreign_key "restaurants", "users"
   add_foreign_key "roles", "accounts"
   add_foreign_key "roles", "users"
+  add_foreign_key "steps", "orders"
   add_foreign_key "suppliers", "users"
 end

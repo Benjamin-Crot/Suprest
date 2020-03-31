@@ -20,4 +20,8 @@ class ItemPolicy < ApplicationPolicy
   def update?
     return true
   end
+
+  def destroy?
+    return true
+  end
 end
