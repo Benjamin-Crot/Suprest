@@ -9,6 +9,10 @@ class StepsController < ApplicationController
     if @step.save
       @order.status = true
       @order.save
+      @order.items.map do |item|
+        @product = Product.find(item.product_id)
+        @product.stock -= item.quantity
+      end
       redirect_to account_path(@account)
     end
   end

@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
-  def new
-    @account = Account.find(params[:account_id])
-    @product = Product.find(params[:product_id])
-    @item = Item.new
-    authorize @item
-  end
+  # def new
+  #   @account = Account.find(params[:account_id])
+  #   @product = Product.find(params[:product_id])
+  #   @item = Item.new
+  #   authorize @item
+  # end
 
   def create
     @account = Account.find(params[:account_id])
@@ -13,25 +13,27 @@ class ItemsController < ApplicationController
     authorize @item
     @item.quantity = params[:item][:quantity]
     @item.product_id = params[:product_id]
-    item_price(params[:item][:quantity].to_i)
-
-    # # if Order.where(["status = ? and account_id = ? and supplier = ?", "#{false}", "#{params[:account_id].to_i}", "#{@product.account_id}"]).empty?
-    # if Order.where(status: false, account_id: params[:account_id].to_i, supplier: @product.account_id).exists?
-    #   @item.order_id = Order.where(status: false, account_id: params[:account_id].to_i, supplier: @product.account_id).last.id
-    # else
-    #   raise
-    #   Order.create!(account: @account, supplier: @product.account_id)
-    # end
-
-    @item.order_id = Order.find_or_create_by(status: false, account_id: params[:account_id].to_i, supplier: @product.account_id).id
-
-
-    # @item.order_id = Order.find(["status = ? and account_id = ? and supplier = ?", "#{false}", "#{params[:account_id].to_i}", "#{@product.account_id}"]).id
-
-    if @item.save
-      redirect_to account_products_path(@account)
+    if check_stock?(@product, @item.quantity)
+      item_price(params[:item][:quantity].to_i)
+      @item.order_id = Order.find_or_create_by(status: false, account_id: params[:account_id].to_i, supplier: @product.account_id).id
+      if @item.save
+        redirect_to account_product_path(@account, @product)
+        flash[:success] = "Le produit a bien été ajouté à votre panier"
+      else
+        redirect_to account_product_path(@account, @product)
+      end
     else
-      render :new
+      redirect_to account_product_path(@account, @product)
+      flash[:nostock] = "Limite du stock, produit restant (#{@product.stock})"
+    end
+  end
+
+  def check_stock?(product, quantity)
+    if product.stock >= quantity
+      return true
+    else
+      return false
+      flash[:nostock] = "Limite du stock, produit restant (#{product.stock})"
     end
   end
 
@@ -45,7 +47,6 @@ class ItemsController < ApplicationController
     hash_of_prices.each do |key, value|
       if quantity.between?(value.first, value.last)
         @item.amount_cents = (quantity * key)
-      # else render :new
       end
     end
   end
@@ -67,7 +68,8 @@ class ItemsController < ApplicationController
     redirect_to account_orders_path(@account)
   end
 
-  helper_method :item_price
+
+  helper_method :item_price, :check_stock
 
   private
 

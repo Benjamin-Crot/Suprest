@@ -1,40 +1,71 @@
-<h1>Show</h1>
-<div>
-  <%= cl_image_tag @product.photo.key, :transformation => {:width=>200, :height=>200, :crop=>"fill"} %>
-  <p><%= @product.name %></p>
-  <p><%= @product.description %></p>
-  <p><%= @product.category %></p>
-  <p><%= @product.stock %></p>
+<%= render 'products/shared/top-shopping' %>
+
+<h1><%= @product.name %></h1>
+<div class="product d-flex justify-content-start">
+  <div class="mr-5">
+    <%= cl_image_tag @product.photo.key, :transformation => {:width=>250, :height=>250, :crop=>"fill"} %>
+  </div>
+  <div>
+    <%= @product.description %>
+  </div>
+
+</div>
+<br>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Caractéristiques du produit</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Description</td>
+        <td><%= @product.description %></td>
+      </tr>
+      <tr>
+        <td>Label</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td>Origine</td>
+        <td>N/A</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <h2>Prix</h2>
-<div>
-  <table>
-   <tr>
-       <td>Montant</td>
-       <td>Quantité minimum</td>
-       <td>Quantité maximum</td>
-       <%# raise %>
-   </tr>
-   <% @product.pricing.each do |pricing| %>
-     <tr>
-        <td><%= pricing.amount_cents %></td>
-        <td><%= pricing.min_quantity %></td>
-        <td><%= pricing.max_quantity %></td>
-        <td><%= link_to "Ajouter à mon panier", edit_pricing_path(pricing), class: "btn-gradient" %></td>
-     </tr>
-    <% end %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Volume  (en <%= @product.entity %>)</th>
+        <th scope="col">Prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pricings.each do |pricing| %>
+        <tr>
+          <td>de <%= pricing.min_quantity %> à <%= pricing.max_quantity %></td>
+          <td><%= pricing.amount_cents.fdiv(100) %>€</td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
+
+<% if flash[:success] %>
+  <div class="alert alert-success" role="alert"><%= flash[:success] %></div>
+<% elsif flash[:nostock] %>
+  <div class="alert alert-warning" role="alert"><%= flash[:nostock] %></div>
+<% end %>
 
 <div class="form">
   <%= simple_form_for [@account, @product, @item] do |f| %>
     <%= f.input :quantity, label: false, placeholder: "Quantité", as: :numeric, input_html: { min: 0 } %>
 
-    <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
+    <%= f.button :submit, "Ajouter au panier", class: "btn btn-primary"%>
   <% end %>
-</div>
-
-<div>
-  <%= render "orders/index" %>
 </div>
