@@ -7,6 +7,10 @@ class ProductsController < ApplicationController
     @orders = Order.where(status: false, account_id: @account.id)
   end
 
+  def first_price(product)
+    Pricing.where(product_id: product).order(amount_cents: :desc).last.amount_cents.fdiv(100)
+  end
+
   def my_products
     @account = Account.find(params[:account_id])
     @products = Product.where("account_id" == @account.id)
@@ -36,6 +40,7 @@ class ProductsController < ApplicationController
     @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @product = Product.find(params[:id])
     @account = Account.find(params[:account_id])
+    @pricings = Pricing.where(product_id: @product).order(amount_cents: :desc)
     @item = Item.new
     @orders = Order.where(status: false, account_id: @account.id)
     authorize @product
@@ -49,8 +54,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @account = Account.find(params[:account_id])
     @product = Product.find(params[:id])
+    @account = Account.find(@product.account_id)
     authorize @product
     @product.update(product_params)
     redirect_to account_path(@account)
@@ -64,12 +69,7 @@ class ProductsController < ApplicationController
     redirect_to account_path(@account)
   end
 
-  # def pricing
-  #   @product = Product.find(params[:id])
-  #   authorize @product
-  #   @product.destroy
-  #   redirect_to account_path(@account)
-  # end
+  helper_method :first_price
 
   private
 

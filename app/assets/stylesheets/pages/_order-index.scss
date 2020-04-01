@@ -32,3 +32,12 @@
   table#cart tfoot td .btn{display:block;}
 
 }
+
+.with-chevron[aria-expanded='true'] i {
+  display: block;
+  transform: rotate(180deg) !important;
+}
+
+#button-supplier {
+  background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
+}

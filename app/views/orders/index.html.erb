@@ -2,7 +2,12 @@
 
 <% @orders.each do |order| %>
   <% unless order.supplier.nil? %>
-  <a href="#orderSupplier" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><%= Account.find(order.supplier).name %></a>
+  <a href="#orderSupplier" data-toggle="collapse" role="button" aria-expanded="true" class="btn btn-primary btn-block py-2 shadow-sm with-chevron">
+    <p class="d-flex align-items-center justify-content-between mb-0 px-3 py-2">
+      <strong class="text-uppercase"><%= Account.find(order.supplier).name %></strong>
+      <i class="fa fa-angle-down"></i>
+    </p>
+  </a>
       <div class="container collapse show" id="orderSupplier">
         <table id="cart" class="table table-hover table-condensed">
           <thead>
@@ -29,11 +34,11 @@
                     </div>
                   </div>
                 </td>
-                <td data-th="Price"><%= item.amount_cents.to_f / item.quantity / 100 %>€</td>
+                <td data-th="Price"><%= item.amount_cents.fdiv(item.quantity).fdiv(100) %>€</td>
                 <td data-th="Quantity">
                   <input type="number" class="form-control text-center" value="<%= item.quantity %>">
                 </td>
-                <td data-th="Subtotal" class="text-center"><%= item.amount_cents / 100 %>€</td>
+                <td data-th="Subtotal" class="text-center"><%= item.amount_cents.fdiv(100) %>€</td>
                 <td class="actions" data-th="">
                   <button class="btn btn-info btn-sm"><i class="fa fa-sync-alt"></i></button>
                   <%= link_to "", item_path(item), method: :delete, class: "btn btn-danger btn-sm fa fa-trash-alt" %>
@@ -47,7 +52,7 @@
               <td class="text-center"><strong>Total 1.99</strong></td>
             </tr>
             <tr>
-              <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+              <td><%= link_to "Retour au marché", :back, class: "btn btn-warning fa fa-angle-left"  %></td>
               <td colspan="2" class="hidden-xs"></td>
               <td class="hidden-xs text-center"><strong>Total <%= total_order(order) %>€</strong></td>
               <td><%= link_to "Valider", order_steps_path(order), method: :post, class: "btn btn-success btn-block" %></td>
