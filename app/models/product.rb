@@ -10,4 +10,15 @@ class Product < ApplicationRecord
   validates_inclusion_of :entity, in: [ "gramme", "kilogramme", "centilitre", "litre", "pièce" ]
   has_one_attached :photo
 
+
+  include PgSearch::Product
+  pg_search_scope :global_search,
+    against: [:name],
+    associated_against: {
+      accounts: [:name]
+    },
+    using: {
+      tsearch: {prefix: true}
+    }
+
 end

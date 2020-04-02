@@ -1,10 +1,22 @@
 class ProductsController < ApplicationController
 
   def index
+    @all_accounts = Account.all
     @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @products = policy_scope(Product).order(created_at: :desc)
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
+    if params["search"]
+      @filter = params["search"]["account"].concat(params["search"]["strengths"]).flatten.reject(&:blank?)
+      @products = Product.all.global_search("#{@filter}")
+      raise
+    else
+      @products = Product.all
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def first_price(product)

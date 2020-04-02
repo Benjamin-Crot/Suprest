@@ -35,6 +35,8 @@ gem 'devise'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
 gem 'bootstrap', '~> 4.4.1'
+gem 'pg_search', '~> 2.3.0'
+gem 'acts-as-taggable-on', '~> 6.0'
 
 group :development, :test do
   gem 'pry-byebug'
@@ -64,3 +66,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
