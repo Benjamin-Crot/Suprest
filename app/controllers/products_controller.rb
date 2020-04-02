@@ -7,6 +7,18 @@ class ProductsController < ApplicationController
     @orders = Order.where(status: false, account_id: @account.id)
   end
 
+  def list_items
+    Item.joins(:order).where("orders.status" => false, "orders.account_id" => @account.id)
+  end
+
+  def market
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
+    @products = policy_scope(Product).order(created_at: :desc)
+    authorize @products
+    @account = Account.find(params[:account_id])
+    @orders = Order.where(status: false, account_id: @account.id)
+  end
+
   def first_price(product)
     Pricing.where(product_id: product).order(amount_cents: :desc).last.amount_cents.fdiv(100)
   end
@@ -15,6 +27,9 @@ class ProductsController < ApplicationController
     @account = Account.find(params[:account_id])
     @products = Product.where("account_id" == @account.id)
     authorize @products
+  end
+
+  def home
   end
 
   def new
@@ -69,7 +84,15 @@ class ProductsController < ApplicationController
     redirect_to account_path(@account)
   end
 
-  helper_method :first_price
+  def total_order(order)
+    sum = 0
+    order.items.each do |item|
+      sum += item.amount_cents
+    end
+    return sum.fdiv(100)
+  end
+
+  helper_method :first_price, :total_order, :list_items
 
   private
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :new, :create, :show] do
       collection do
         get 'my_products'
+        get 'market'
       end
       resources :pricings, only: [:index]
       resources :items, only: [:index, :new, :create]

@@ -9,6 +9,14 @@ class ProductPolicy < ApplicationPolicy
     return true
   end
 
+  def market?
+    return true
+  end
+
+  def list_items?
+    return true
+  end
+
   def my_products?
     return true
   end

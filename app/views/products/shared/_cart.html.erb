@@ -4,14 +4,18 @@
 </a>
 
 <ul class="collapse" id="cart-item">
-  <% @orders.each do |order| %>
+  <% list_items.each do |item| %>
     <li>
-      <%= order.supplier %>
+      <%= item.product.name %>
+      <%= item.quantity %>
     </li>
   <% end %>
   <li>
     <%= link_to "Finaliser mon panier", account_orders_path(@account) %>
+    <%= link_to "MARKET", market_account_products_path(@account) %>
   </li>
+
 </ul>
+
 
 
