@@ -7,9 +7,8 @@ class ProductsController < ApplicationController
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
     if params["search"]
-      @filter = params["search"]["account"].concat(params["search"]["strengths"]).flatten.reject(&:blank?)
-      @products = Product.all.global_search("#{@filter}")
-      raise
+      @filter = params["search"]["categories"].flatten.reject(&:blank?)
+      @products = @filter.empty? ? Product.all : Product.all.tagged_with(@filter, any: true)
     else
       @products = Product.all
     end
@@ -17,6 +16,16 @@ class ProductsController < ApplicationController
       format.html
       format.js
     end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: { products: @products } }
+    # end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: { products: @products } }
+    # end
   end
 
   def first_price(product)
@@ -86,6 +95,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :stock, :category, :entity, :photo, :account)
+    params.require(:product).permit(:name, :description, :stock, :category, :entity, :photo, :account, :category_list)
   end
 end

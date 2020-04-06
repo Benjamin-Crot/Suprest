@@ -3,6 +3,7 @@
     <%= f.input :name, label: false, placeholder: "Nom du produit"%>
     <%= f.input :description, label: false, placeholder: 'Description'%>
     <%= f.input :category, label: false, placeholder: "Catégorie", collection: [ "Légume", "Fruit", "Viande", "Poisson", "Autre" ]%>
+    <%= f.input :category_list %>
     <%= f.input :stock, label: false, placeholder: "Stock", as: :numeric, input_html: { min: 0 } %>
     <%= f.input :entity, label: "Unité", collection: [ "gramme", "kilogramme", "centilitre", "litre", "pièce" ]%>
     <%= f.input :photo, as: :file, required: true %>

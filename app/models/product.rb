@@ -11,14 +11,20 @@ class Product < ApplicationRecord
   has_one_attached :photo
 
 
-  include PgSearch::Product
+  acts_as_taggable_on :categories
+
+  $categories = [ "Légume", "Fruit", "Viande", "Poisson", "Autre" ]
+
+
+  include PgSearch::Model
   pg_search_scope :global_search,
     against: [:name],
     associated_against: {
-      accounts: [:name]
+      cateogies: [:name]
     },
     using: {
-      tsearch: {prefix: true}
+      tsearch: {any_word: true}
     }
+
 
 end
