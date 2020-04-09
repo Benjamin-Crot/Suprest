@@ -23,5 +23,5 @@ require("channels")
 // ----------------------------------------------------
 
 import "bootstrap";
-import "../components/index";
+// import "components/index";
 import "controllers"

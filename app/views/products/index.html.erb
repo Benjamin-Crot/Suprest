@@ -5,8 +5,9 @@
 
       <!-- List group-->
       <ul class="list-group shadow">
-          <div data-target="filter.product" id="products">
-            <%= render 'product', products: @products %>
+          <div data-target="filter.products" id="products">
+            <%#= render 'product', products: @products %>
+            <%= @list_products %>
           </div>
       </ul>
       <!-- End -->
@@ -24,4 +25,4 @@
   </div>
 </div>
 
-<%= javascript_pack_tag 'custom' %>
+<%#= javascript_pack_tag 'custom' %>
