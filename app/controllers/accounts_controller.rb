@@ -29,6 +29,7 @@ class AccountsController < ApplicationController
     authorize @accounts
     @account = Account.find(params[:id])
     authorize @account
+    @orders = Order.where(supplier: @account.id)
   end
 
   def edit
