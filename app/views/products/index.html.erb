@@ -6,15 +6,15 @@
       <!-- List group-->
       <ul class="list-group shadow">
           <div data-target="filter.products" id="products">
-            <%#= render 'product', products: @products %>
-            <%= @list_products %>
+            <%= render 'product', products: @products %>
+            <%#= @list_products %>
           </div>
       </ul>
       <!-- End -->
     </div>
   </div>
 
-  <div data-action="change->filter#submit" data-target="filter.form">
+<!--   <div data-action="change->filter#submit" data-target="filter.form"> -->
     <%= simple_form_for :search, url: account_products_path(@account), method: "GET", remote: true do |f| %>
       <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes %>
       <%#= f.association :account, as: :check_boxes, collection: Account.order(:name) %>
@@ -22,7 +22,7 @@
       <%= f.submit "Search", name: nil, class: 'd-none', data: { target: 'filter.submit' } %>
       <%= link_to "Reset", account_products_path(@account) %>
     <%end%>
-  </div>
+<!--   </div> -->
 </div>
 
-<%#= javascript_pack_tag 'custom' %>
+

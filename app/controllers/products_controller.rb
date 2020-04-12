@@ -6,31 +6,31 @@ class ProductsController < ApplicationController
     @products = policy_scope(Product).order(created_at: :desc)
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
-    # if params["search"]
-    #   @filter = params["search"]["categories"].flatten.reject(&:blank?)
-    #   @products = @filter.empty? ? Product.all : Product.all.tagged_with(@filter, any: true)
-    # else
-    #   @products = Product.all
-    # end
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: { products: @products } }
-    # end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: { products: @products } }
-    # end
-
+    if params["search"]
+      @filter = params["search"]["categories"].flatten.reject(&:blank?)
+      @products = @filter.empty? ? Product.all : Product.all.tagged_with(@filter, any: true)
+    else
+      @products = Product.all
+    end
     respond_to do |format|
       format.html
-      format.json { render json: { products: @products } }
+      format.js
     end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: { products: @products } }
+    # end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: { products: @products } }
+    # end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: { products: @products } }
+    # end
   end
 
   def first_price(product)

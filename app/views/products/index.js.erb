@@ -1,0 +1,5 @@
+function replaceProducts (innerHTML) {
+  const products = document.getElementById('products');
+  products.innerHTML = innerHTML;
+}
+replaceProducts ("<%= j render 'product', products: @products %>");
