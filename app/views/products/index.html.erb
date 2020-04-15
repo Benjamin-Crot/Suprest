@@ -14,15 +14,23 @@
     </div>
   </div>
 
-<!--   <div data-action="change->filter#submit" data-target="filter.form"> -->
+  <div data-action="change->filter#clickSubmit" data-target="filter.form">
     <%= simple_form_for :search, url: account_products_path(@account), method: "GET", remote: true do |f| %>
-      <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes %>
+      <%= f.input :categories, label: "Category",  collection: $categories, as: :check_boxes, onchange: 'clickSubmit()'%>
       <%#= f.association :account, as: :check_boxes, collection: Account.order(:name) %>
       <%#= f.input :account,:collection => @accounts,:label_method => :account,:value_method => :id,:label => "Fournisseur" ,:include_blank => false %>
-      <%= f.submit "Search", name: nil, class: 'd-none', data: { target: 'filter.submit' } %>
+      <%= f.submit "Search", id: "search_submit", style: "display:none", 'data-target': "filter.search" %>
       <%= link_to "Reset", account_products_path(@account) %>
     <%end%>
-<!--   </div> -->
+  </div>
 </div>
+
+<script type="text/javascript">
+  function clickSubmit() {
+    $("#search_submit").trigger("click")
+    console.log("hello")
+  }
+</script>
+
 
 

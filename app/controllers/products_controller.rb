@@ -16,21 +16,6 @@ class ProductsController < ApplicationController
       format.html
       format.js
     end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: { products: @products } }
-    # end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: { products: @products } }
-    # end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: { products: @products } }
-    # end
   end
 
   def first_price(product)
