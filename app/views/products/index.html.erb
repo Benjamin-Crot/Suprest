@@ -1,46 +1,35 @@
 <%= render 'products/shared/top-shopping' %>
+<div data-controller="filter">
+  <div>
+    <a href="#categorie-item" data-toggle="collapse" aria-expanded="false" aria-controls="main-navigation">
+      <span class="btn btn-ghost">Catégorie</span>
+    </a>
 
-<div class="row">
-  <div class="col-lg-8 mx-auto">
-
-    <!-- List group-->
-    <ul class="list-group shadow">
-
-      <% @products.each do |product| %>
-        <%= link_to account_product_path(@account, product) do %>
-
-          <!-- list group item-->
-          <li class="list-group-item">
-            <!-- Custom content-->
-            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-              <div class="media-body order-2 order-lg-1">
-                <h5 class="mt-0 font-weight-bold mb-2"><%= product.name %></h5>
-                <p class="font-italic text-muted mb-0 small"><%= product.description %></p>
-                <div class="d-flex align-items-center justify-content-between mt-1">
-                  <h6 class="font-weight-bold my-2">
-                    à partir de
-                    <br>
-                    <%= first_price(product) %>€ / <%= product.entity %>
-                  </h6>
-
-                  <ul class="list-inline small">
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                    <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
-                  </ul>
-                </div>
-              </div>
-              <%= cl_image_tag product.photo.key, width: 200, height:150, crop: :fill, class: "ml-lg-5 order-1 order-lg-2" %>
-              <!-- <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485076/shoes-1_gthops.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2"> -->
-            </div>
-            <!-- End -->
-          </li>
-          <!-- End -->
-        <% end %>
-      <% end %>
-    </ul>
-    <!-- End -->
+    <div data-action="change->filter#clickSubmit" data-target="filter.form" class="collapse filter panel-body" id="categorie-item">
+      <%= simple_form_for :search, url: account_products_path(@account), method: "GET", remote: true do |f| %>
+        <%= f.input :categories, label: "", required: false,  collection: $categories, as: :check_boxes, onchange: 'clickSubmit()'%>
+        <%#= f.association :account, as: :check_boxes, collection: Account.order(:name) %>
+        <%#= f.input :account,:collection => @accounts,:label_method => :account,:value_method => :id,:label => "Fournisseur" ,:include_blank => false %>
+        <%= f.submit "Search", id: "search_submit", style: "display:none", 'data-target': "filter.search" %>
+      <%end%>
+    </div>
   </div>
+
+
+
+  <%= link_to "Reset", account_products_path(@account) %>
+
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <ul class="list-group shadow">
+        <div data-target="filter.products" id="products">
+          <%= render 'product', products: @products %>
+        </div>
+      </ul>
+    </div>
+  </div>
+
 </div>
+
+
+
