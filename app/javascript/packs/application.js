@@ -23,3 +23,17 @@ require("channels")
 // ----------------------------------------------------
 
 import "bootstrap";
+// import "components/index";
+import $ from 'jquery';
+global.$ = jQuery;
+
+import "controllers"
+import Rails from '@rails/ujs';
+
+
+$(document).click(function(e) {
+  if (!$(e.target).is('.panel-body') && !$(e.target).closest('.panel-body').length) {
+      $('.collapse').collapse('hide');
+    }
+});
+

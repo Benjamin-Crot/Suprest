@@ -10,4 +10,21 @@ class Product < ApplicationRecord
   validates_inclusion_of :entity, in: [ "gramme", "kilogramme", "centilitre", "litre", "pièce" ]
   has_one_attached :photo
 
+
+  acts_as_taggable_on :categories
+
+  $categories = [ "Légume", "Fruit", "Viande", "Poisson", "Autre" ]
+
+
+  include PgSearch::Model
+  pg_search_scope :global_search,
+    against: [:name],
+    associated_against: {
+      cateogies: [:name]
+    },
+    using: {
+      tsearch: {any_word: true}
+    }
+
+
 end
