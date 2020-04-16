@@ -31,11 +31,9 @@ import "controllers"
 import Rails from '@rails/ujs';
 
 
-// var checkBoxes = document.querySelectorAll(".form-check-input");
-// var form = document.querySelector('form');
+$(document).click(function(e) {
+  if (!$(e.target).is('.panel-body') && !$(e.target).closest('.panel-body').length) {
+      $('.collapse').collapse('hide');
+    }
+});
 
-// for (const check of checkBoxes) {
-// check.addEventListener( 'change', function() {
-//   Rails.fire(form, 'submit');
-// });
-// }
