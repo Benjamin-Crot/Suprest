@@ -37,3 +37,8 @@ $(document).click(function(e) {
     }
 });
 
+// $(document).click(function(e) {
+//   if (!$(e.target).is('.panel-body')) {
+//       $('.collapse').collapse('hide');
+//     }
+// });

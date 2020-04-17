@@ -6,12 +6,53 @@ class ProductsController < ApplicationController
     @products = policy_scope(Product).order(created_at: :desc)
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
+
     if params["search"]
-      @filter = params["search"]["categories"].flatten.reject(&:blank?)
-      @products = @filter.empty? ? Product.all : Product.all.tagged_with(@filter, any: true)
+      # Test 1:
+      # @filter = params["search"]["categories"].concat(params["search"]["entity"]).flatten.reject(&:blank?)
+      # @products = Product.all.global_search("#{@filter}")
+
+      # Test 2 :
+      # if params["search"]["categories"].empty?
+      #   @filter1 = "fruit"
+      # else
+      #   @filter1 = params["search"]["categories"].flatten.reject(&:blank?)
+      # end
+
+      # if params["search"]["entity"].empty?
+      #   @filter2 = "gramme kilogramme centilitre litre pièce"
+      # else
+      #   @filter2 = params["search"]["entity"].flatten.reject(&:blank?)
+      # end
+
+      # @products = Product.all.category_search("#{@filter1}").entity_search("#{@filter2}")
+
+      # Test 3
+      # if params["search"]["categories"].empty?
+      #   product1 = Product.all
+      # else
+      #   @filter1 = params["search"]["categories"].flatten.reject(&:blank?)
+      #   product1 = Product.all.category_search("#{@filter1}")
+      # end
+
+      # if params["search"]["entity"].empty?
+      #   product2 = Product.all
+      # else
+      #   @filter2 = params["search"]["entity"].flatten.reject(&:blank?)
+      #   product2 = Product.all.entity_search("#{@filter2}")
+      # end
+
+      # @products = product1 & product2
+
+      # Test 4
+
+
+      @products = Product.all.category(params["search"]["categories"]).entity(params["search"]["entity"])
+
     else
       @products = Product.all
     end
+
     respond_to do |format|
       format.html
       format.js
@@ -23,11 +64,26 @@ class ProductsController < ApplicationController
   end
 
   def market
+    # @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
+    # @products = policy_scope(Product).order(created_at: :desc)
+    # authorize @products
+    # @account = Account.find(params[:account_id])
+    # @orders = Order.where(status: false, account_id: @account.id)
+
+    @all_accounts = Account.all
     @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @products = policy_scope(Product).order(created_at: :desc)
     authorize @products
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
+
+    if params["search"]
+      @products = Product.all
+      # @products = Product.all.category(params["search"]["categories"]).entity(params["search"]["entity"])
+
+    else
+      @products = Product.all
+    end
   end
 
   def first_price(product)
@@ -53,6 +109,7 @@ class ProductsController < ApplicationController
   def create
     @account = Account.find(params[:account_id])
     @product = Product.new(product_params)
+    raise
     @product.account_id = @account.id
     authorize @product
     if @product.save
