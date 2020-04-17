@@ -1,21 +1,41 @@
 <%= render 'products/shared/top-shopping' %>
+
+
+
 <div data-controller="filter">
   <div>
-    <a href="#categorie-item" data-toggle="collapse" aria-expanded="false" aria-controls="main-navigation">
+    <a href="#categorie-item" data-toggle="collapse" aria-expanded="false">
       <span class="btn btn-ghost">Catégorie</span>
     </a>
 
-    <div data-action="change->filter#clickSubmit" data-target="filter.form" class="collapse filter panel-body" id="categorie-item">
+    <a href="#entity-item" data-toggle="collapse" aria-expanded="false">
+      <span class="btn btn-ghost">Unité</span>
+    </a>
+
+    <div data-action="change->filter#clickSubmit" data-target="filter.form" class="panel-body">
       <%= simple_form_for :search, url: account_products_path(@account), method: "GET", remote: true do |f| %>
-        <%= f.input :categories, label: "", required: false,  collection: $categories, as: :check_boxes, onchange: 'clickSubmit()'%>
-        <%#= f.association :account, as: :check_boxes, collection: Account.order(:name) %>
-        <%#= f.input :account,:collection => @accounts,:label_method => :account,:value_method => :id,:label => "Fournisseur" ,:include_blank => false %>
+        <div class="collapse filter panel-body" id="categorie-item" >
+          <%= f.input :categories, label: "", required: false,  collection: $categories, as: :check_boxes, onchange: 'clickSubmit()'%>
+        </div>
+        <div class="collapse filter panel-body" id="entity-item">
+          <%= f.input :entity, label: "", required: false, collection: [ "gramme", "kilogramme", "centilitre", "litre", "pièce" ], as: :check_boxes, onchange: 'clickSubmit()'%>
+        </div>
         <%= f.submit "Search", id: "search_submit", style: "display:none", 'data-target': "filter.search" %>
       <%end%>
     </div>
   </div>
 
+<!--   <div>
 
+
+    <div data-action="change->filter#clickSubmit" data-target="filter.form" class="collapse filter panel-body" id="entity-item">
+      <%#= simple_form_for :search, url: account_products_path(@account), method: "GET", remote: true do |f| %>
+        <%#= f.input :entity, label: "Unité", collection: [ "gramme", "kilogramme", "centilitre", "litre", "pièce" ], as: :check_boxes, onchange: 'clickSubmit()'%>
+        <%#= f.association :account, as: :check_boxes, collection: Account.order(:name) %>
+        <%#= f.input :account,:collection => @accounts,:label_method => :account,:value_method => :id,:label => "Fournisseur" ,:include_blank => false %>
+      <%#end%>
+    </div>
+  </div> -->
 
   <%= link_to "Reset", account_products_path(@account) %>
 
