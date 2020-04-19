@@ -12,30 +12,26 @@
       <span class="btn btn-ghost">Unité</span>
     </a>
 
+    <a href="#price-item" data-toggle="collapse" aria-expanded="false">
+      <span class="btn btn-ghost">Prix</span>
+    </a>
+
     <div data-action="change->filter#clickSubmit" data-target="filter.form" class="panel-body">
       <%= simple_form_for :search, url: account_products_path(@account), method: "GET", remote: true do |f| %>
+
         <div class="collapse filter panel-body" id="categorie-item" >
           <%= f.input :categories, label: "", required: false,  collection: $categories, as: :check_boxes, onchange: 'clickSubmit()'%>
         </div>
         <div class="collapse filter panel-body" id="entity-item">
           <%= f.input :entity, label: "", required: false, collection: [ "gramme", "kilogramme", "centilitre", "litre", "pièce" ], as: :check_boxes, onchange: 'clickSubmit()'%>
         </div>
+        <div class="collapse filter panel-body" id="price-item">
+          <%= f.input :price, label: "", required: false, as: :radio_buttons, collection: ["< 1", "< 2", "< 4", "< 10", "< 15", "< 20", "< 25", "< 30"], onchange: 'clickSubmit()'%>
+        </div>
         <%= f.submit "Search", id: "search_submit", style: "display:none", 'data-target': "filter.search" %>
       <%end%>
     </div>
   </div>
-
-<!--   <div>
-
-
-    <div data-action="change->filter#clickSubmit" data-target="filter.form" class="collapse filter panel-body" id="entity-item">
-      <%#= simple_form_for :search, url: account_products_path(@account), method: "GET", remote: true do |f| %>
-        <%#= f.input :entity, label: "Unité", collection: [ "gramme", "kilogramme", "centilitre", "litre", "pièce" ], as: :check_boxes, onchange: 'clickSubmit()'%>
-        <%#= f.association :account, as: :check_boxes, collection: Account.order(:name) %>
-        <%#= f.input :account,:collection => @accounts,:label_method => :account,:value_method => :id,:label => "Fournisseur" ,:include_blank => false %>
-      <%#end%>
-    </div>
-  </div> -->
 
   <%= link_to "Reset", account_products_path(@account) %>
 

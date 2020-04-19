@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :account
-  has_many :pricing, dependent: :destroy
+  has_many :pricings, dependent: :destroy
   has_many :items, dependent: :destroy
 
   validates :name, presence: true
@@ -54,6 +54,41 @@ class Product < ApplicationRecord
   def self.entity(query)
     if query.flatten.reject(&:blank?).present?
       entity_search(query)
+    else
+      # No query? Return all records, newest first.
+      order("created_at DESC")
+    end
+  end
+
+  pg_search_scope :price_search,
+    associated_against: {
+      pricings: [:amount_cents],
+    },
+    using: {
+      tsearch: {any_word: true}
+    }
+
+  def self.price(query)
+    if query.flatten.reject(&:blank?).present?
+      price_search(query)
+    else
+      # No query? Return all records, newest first.
+      order("created_at DESC")
+    end
+  end
+
+  pg_search_scope :search_by_text,
+    against: [:name],
+    associated_against: {
+      account: [:name],
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
+
+  def self.text(query)
+    if query.present?
+      search_by_text(query)
     else
       # No query? Return all records, newest first.
       order("created_at DESC")

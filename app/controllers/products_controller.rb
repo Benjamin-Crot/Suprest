@@ -7,50 +7,16 @@ class ProductsController < ApplicationController
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
 
+    if params[:query]
+      @products = Product.all.text(params[:query])
+    end
+
     if params["search"]
-      # Test 1:
-      # @filter = params["search"]["categories"].concat(params["search"]["entity"]).flatten.reject(&:blank?)
-      # @products = Product.all.global_search("#{@filter}")
-
-      # Test 2 :
-      # if params["search"]["categories"].empty?
-      #   @filter1 = "fruit"
-      # else
-      #   @filter1 = params["search"]["categories"].flatten.reject(&:blank?)
-      # end
-
-      # if params["search"]["entity"].empty?
-      #   @filter2 = "gramme kilogramme centilitre litre pièce"
-      # else
-      #   @filter2 = params["search"]["entity"].flatten.reject(&:blank?)
-      # end
-
-      # @products = Product.all.category_search("#{@filter1}").entity_search("#{@filter2}")
-
-      # Test 3
-      # if params["search"]["categories"].empty?
-      #   product1 = Product.all
-      # else
-      #   @filter1 = params["search"]["categories"].flatten.reject(&:blank?)
-      #   product1 = Product.all.category_search("#{@filter1}")
-      # end
-
-      # if params["search"]["entity"].empty?
-      #   product2 = Product.all
-      # else
-      #   @filter2 = params["search"]["entity"].flatten.reject(&:blank?)
-      #   product2 = Product.all.entity_search("#{@filter2}")
-      # end
-
-      # @products = product1 & product2
-
-      # Test 4
-
-
       @products = Product.all.category(params["search"]["categories"]).entity(params["search"]["entity"])
+    end
 
-    else
-      @products = Product.all
+    if params[:query] && params["search"]
+      @products = Product.all.text(params[:query]).category(params["search"]["categories"]).entity(params["search"]["entity"])
     end
 
     respond_to do |format|
@@ -77,12 +43,15 @@ class ProductsController < ApplicationController
     @account = Account.find(params[:account_id])
     @orders = Order.where(status: false, account_id: @account.id)
 
-    if params["search"]
-      @products = Product.all
-      # @products = Product.all.category(params["search"]["categories"]).entity(params["search"]["entity"])
+    if params[:query]
+      @products = Product.all.search_by_text(params[:query])
+    end
 
-    else
-      @products = Product.all
+    if params["search"]
+      # @products = Product.all
+      @products = Product.all.category(params["search"]["categories"]).entity(params["search"]["entity"])
+    # else
+    #   @products = Product.all
     end
   end
 
