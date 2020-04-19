@@ -1,13 +1,23 @@
-<%= render 'products/shared/top-shopping' %>
-
-<% if params["search"] %>
-  <p>params["search"] : <%= params["search"] %></p>
-  <p>params["search"]["categories"].to_a[1] : <%= params["search"]["categories"].flatten.reject(&:blank?).present? %></p>
-
-<% else %>
-  <p>No params["search"]</p>
-<% end %>
-
+<div data-controller="search">
+  <div data-action="keydown->search#keydownSubmit" data-target="search.field">
+    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+      <%= form_tag market_account_products_path(@account), method: :get, remote: true do %>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <%= button_tag(type: "submit", id: "button-addon2", class: "field btn btn-link", 'data-target': "search.submit" ) do %>
+                <i class="fa fa-search"></i>
+            <% end %>
+          </div>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control border-0 bg-light",
+            placeholder: "Rechercher un produit ou un fournisseur"
+          %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 
 

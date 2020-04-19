@@ -1,12 +1,21 @@
-<form action="">
-  <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <button id="button-addon2" type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
-      </div>
-      <input type="search" placeholder="De quel produit avez-vous besoin ?" aria-describedby="button-addon2" class="form-control border-0 bg-light">
+<div data-controller="search">
+  <div data-action="keydown->search#keydownSubmit" data-target="search.field">
+    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+      <%= form_tag account_products_path(@account), method: :get, remote: true do %>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <%= button_tag(type: "submit", id: "button-addon2", class: "field btn btn-link", 'data-target': "search.submit" ) do %>
+                <i class="fa fa-search"></i>
+            <% end %>
+          </div>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control border-0 bg-light",
+            placeholder: "Rechercher un produit ou un fournisseur"
+          %>
+        </div>
+      <% end %>
     </div>
   </div>
-</form>
-
+</div>
 
