@@ -1,0 +1,47 @@
+<h4>Les chiffres</h4>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-3">
+      <div class="card-dashboard-color" id="first">
+        <div class="number">
+          <%= @turnover %>€
+        </div>
+        <div class="number-description">
+          Chiffre d'affaire
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3 col-md-offset-1">
+      <div class="card-dashboard-color" id="second">
+        <div class="number">
+          <%= @orders.count %>
+        </div>
+        <div class="number-description">
+          Commandes
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3">
+      <div class="card-dashboard-color" id="third">
+        <div class="number">
+          <%= @average_cart %>€
+        </div>
+        <div class="number-description">
+          Panier Moyen
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3">
+      <div class="card-dashboard-color" id="fourth">
+        <div class="number">
+          <%= @customer_count %>
+        </div>
+        <div class="number-description">
+          Nombre de client
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="card-dashboard-basic">
+  <h5>Commandes</h5>
+
+  <table>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.account.name %></td>
+        <td><%= order.items.sum(:amount_cents).fdiv(100) %>€</td>
+        <td><%= order.items.count %> article(s)</td>
+        <td><%= order.steps.last.name %></td>
+        <td><%= order.steps.last.created_at.strftime('%d/%m/%Y') %></td>
+        <td style="color: grey;"><i class="fas fa-ellipsis-v"></i></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>
+

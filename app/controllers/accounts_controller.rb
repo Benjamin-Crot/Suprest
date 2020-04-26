@@ -29,7 +29,18 @@ class AccountsController < ApplicationController
     authorize @accounts
     @account = Account.find(params[:id])
     authorize @account
-    @orders = Order.where(supplier: @account.id)
+    @orders = Order.where(supplier: @account.id, status: true)
+    @turnover = Item.joins(:order).where(orders: { status: true }).sum(:amount_cents).fdiv(100)
+    @average_cart = @turnover.fdiv(@orders.count)
+    @customer_count = @orders.uniq.pluck(:account_id).count
+
+
+    if @account.category == "Fournisseur"
+      @partial = "supplier"
+    else
+      @partial = "restaurator"
+    end
+
   end
 
   def edit

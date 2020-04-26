@@ -1,0 +1,131 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+
+}
+
+#sidebar {
+    width: 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    // background: #250C4F;
+    color: #fff;
+    transition: all 0.3s;
+    padding-left: 2%;
+    padding-right: 2%;
+    background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
+    a{
+      text-decoration: none;
+      color: white
+    }
+
+
+    .navbar-brand img {
+      width: 40%;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    ul.components {
+    padding: 20px 0;
+    // border-bottom: 1px solid #47748b;
+    }
+
+    li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    }
+
+
+    ul.CTAs a {
+        text-align: center;
+        font-size: 0.9em !important;
+        display: block;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+    a.call_to_action {
+    background: #fff;
+    color: #7386D5;
+    }
+
+    ul ul a {
+        font-size: 0.9em !important;
+        padding-left: 30px !important;
+
+    }
+
+    .user_navabar {
+      display: flex;
+      position: fixed;
+      bottom: 7%;
+    }
+
+    .user-info {
+      margin-left: 4%;
+
+      #info-user{
+        padding: 0px;
+        font-size: 10px;
+      }
+
+      li a {
+        padding: 0px;
+      }
+
+      #user-information{
+        padding: 0px;
+      }
+    }
+
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    // color: #fff;
+    // background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    // transform: translateY(-50%);
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+}
+
+#content {
+    width: 80%;
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+
+
+
+
