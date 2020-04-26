@@ -1,5 +1,20 @@
 
 <%#= link_to "Ajouter un produit", new_account_product_path(@account), class: "btn-gradient" %>
 <%#= link_to "Mes produits", my_products_account_products_path(@account), class: "btn-gradient" %>
-<%= render "accounts/shared/supplier/numbers" %>
-<%= render "accounts/shared/supplier/orders" %>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-ongoing-tab" data-toggle="tab" href="#nav-ongoing" role="tab" aria-controls="nav-ongoing" aria-selected="true">Tableau de bord</a>
+    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">Commandes</a>
+    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">Produits</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-ongoing" role="tabpanel" aria-labelledby="nav-ongoing-tab">
+    <%= render "accounts/shared/supplier/numbers" %>
+    <%= render "accounts/shared/supplier/orders" %>
+  </div>
+  <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+  </div>
+</div>
+
