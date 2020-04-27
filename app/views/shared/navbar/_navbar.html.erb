@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag "logo.png", alt: "Mon image", width: 90 %>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,6 +18,13 @@
       <li class="nav-item">
         <%= link_to "Messages", "#", class: "nav-link" %>
       </li>
+
+      <li class="nav-item">
+        <%= link_to "Dashboard", account_path(@accounts.first), class: "nav-link" %>
+      </li>
+
+
+
       <li class="nav-item dropdown">
         <a href="#logout" data-toggle="collapse" aria-expanded="false" id="user-information">
           <div class = "user_navabar">
@@ -56,3 +63,6 @@
     </ul>
   </div>
 </div>
+
+
+
