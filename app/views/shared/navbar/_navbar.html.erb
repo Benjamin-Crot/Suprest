@@ -20,7 +20,7 @@
       </li>
 
       <li class="nav-item">
-        <%= link_to "Dashboard", account_path(@accounts.first), class: "nav-link" %>
+        <%= link_to "Dashboard", account_path(current_user.accounts.first), class: "nav-link" %>
       </li>
 
 
