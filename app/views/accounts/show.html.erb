@@ -1,8 +1,17 @@
-<h1>
-  Bonjour <%= current_user.first_name %> 👋
-  <%#= link_to "", edit_account_path(@account), class: "fas fa-cog" %>
-</h1>
+<div class="wrapper">
+  <%= render 'shared/navbar/sidebar' %>
+  <div id="dashboard">
+    <div class="container-fluid">
+      <h1>
+        Bonjour <%= current_user.first_name %> 👋
+        <%#= link_to "", edit_account_path(@account), class: "fas fa-cog" %>
+      </h1>
 
-<%= render @partial %>
+      <%= render @partial %>
+    </div>
+  </div>
+</div>
+
+
 
 
