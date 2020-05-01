@@ -1,0 +1,30 @@
+.accounts-choice{
+  ul{
+    list-style: none;
+  }
+
+  .account-modal{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+    .account-photo{
+      background: white;
+    }
+    .account-name{
+      margin-left: 10px;
+    }
+  }
+
+  a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+
+    &:hover{
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+}
+
+

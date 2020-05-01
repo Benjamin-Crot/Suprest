@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root to: 'profiles#show'
 
   resources :accounts do
+    collection do
+      get 'modal_choice_account'
+    end
     resources :roles
     resources :products, only: [:index, :new, :create, :show] do
       collection do
