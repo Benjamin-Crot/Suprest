@@ -32,4 +32,8 @@ class AccountPolicy < ApplicationPolicy
   def destroy?
     return true
   end
+
+  def modal_choice_account?
+    return true
+  end
 end

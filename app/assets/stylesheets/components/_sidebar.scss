@@ -5,6 +5,7 @@
 }
 
 #sidebar {
+
     width: 20%;
     position: fixed;
     top: 0;
@@ -12,16 +13,28 @@
     height: 100vh;
     z-index: 999;
     // background: #250C4F;
-    color: #fff;
+    // color: #fff;
     transition: all 0.3s;
     padding-left: 2%;
     padding-right: 2%;
-    background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
+    // background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
+    background: white;
+
     a{
       text-decoration: none;
-      color: white
+      color: rgba(0, 0, 0, 0.5);
+
+      &:hover{
+        color: rgba(0, 0, 0, 0.7);
+      }
     }
 
+    .flex{
+      height: 86vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
     .navbar-brand img {
       width: 40%;
@@ -32,8 +45,36 @@
       margin-right: auto;
     }
 
+    .logo{
+      h3{
+        font-size: 43px;
+        background: -webkit-linear-gradient(#491fde, #9041f9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+      }
+    }
+
+    .account-dashboard{
+      display: flex;
+      align-items: center;
+      .account-photo{
+        background: white;
+      }
+      .account-name{
+        margin-left: 10px;
+      }
+    }
+
+    .bottom{
+      position: fixed;
+      bottom: 7%;
+      width:inherit;
+    }
+
     ul.components {
-    padding: 20px 0;
+    // padding: 20px 0;
+    padding-bottom: 20px;
     // border-bottom: 1px solid #47748b;
     }
 

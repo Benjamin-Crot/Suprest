@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Connectez-vous à un compte</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<div class="modal-body accounts-choice">
+  <% if @accounts.count == 0 %>
+    Vous n'avez pas encore créer d'organisation.
+  <% else %>
+    <ul>
+      <% @accounts.each do |account| %>
+        <%= link_to account_path(account) do %>
+          <li class="account-modal">
+            <div class="account-photo">
+              <% if account.photo.attached? %>
+                <%= cl_image_tag(account.photo.key,
+                                 :width => 100, :height => 100,
+                                 :crop => :thumb, :gravity => :face, :radius => 20) %>
+              <% else %>
+                <%= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
+              <% end %>
+            </div>
+            <div class="account-name">
+              <%= account.name %>
+            </div>
+            <div>
+              <i class="fas fa-chevron-right" style="margin-left: 30px; font-size: 40px;"></i>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+<div class="modal-footer" style="justify-content: center;">
+  <%= link_to new_account_path do %>
+    <div class="btn-new">
+      Créer une nouvelle organisation
+<!--       <i class="fas fa-plus"></i> -->
+    </div>
+  <% end %>
+</div>

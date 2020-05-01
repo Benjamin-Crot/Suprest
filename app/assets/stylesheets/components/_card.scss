@@ -46,3 +46,18 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+
+.card-welcome{
+  background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
+  color: white;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 3%;
+  margin-bottom: 10px;
+
+  .welcome-text{
+    font-size: 16px;
+    font-weight: lighter;
+  }
+}

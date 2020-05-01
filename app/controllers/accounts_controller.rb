@@ -76,12 +76,21 @@ class AccountsController < ApplicationController
     end
   end
 
+  def modal_choice_account
+    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
+    authorize @accounts
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   helper_method :list_users_roles, :convert_is_admin_to_string
 
   private
 
   def account_params
-    params.require(:account).permit(:name, :address, :category)
+    params.require(:account).permit(:name, :address, :category, :photo)
   end
 
 end

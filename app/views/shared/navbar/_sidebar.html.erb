@@ -1,106 +1,117 @@
 <div id="sidebar">
 
+
   <div class="sidebar-header">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo.png", alt: "Mon image", width: 90 %>
+    <%#= link_to root_path, class: "navbar-brand" do %>
+      <%#= image_tag "logo.png", alt: "Logo", width: 90 %>
+    <%# end %>
+    <%= link_to root_path, class:"logo" do %>
+      <h3>Beno</h3>
     <% end %>
   </div>
 
-  <ul class="list-unstyled CTAs">
-    <% unless @account.nil? || @account.id.nil?%>
+<!--   <ul class="list-unstyled CTAs">
+    <%# unless @account.nil? || @account.id.nil?%>
       <li>
-        <%= link_to "Faire son marché", account_products_path(@account), class: "call_to_action" %>
+        <%#= link_to "Faire son marché", account_products_path(@account), class: "call_to_action" %>
       </li>
-    <% end %>
-  </ul>
+    <%# end %>
+  </ul> -->
+
 
   <ul class="list-unstyled components">
-    <% unless @accounts.nil? || @account.nil?%>
-      <li class="active">
 
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          <div style="display: inline-block; text-align: center;">
-            <i class="fas fa-home" style="font-size:20px; vertical-align: middle;"></i>
-            <span>Dashboard</span>
-          </div>
-        </a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <% @accounts.each do |account| %>
-            <li>
-              <%= link_to account.name, account_path(account) %>
+    <% unless @accounts.nil? || @account.nil? %>
+    <hr>
+      <div class ="flex">
+        <div>
+          <%= link_to modal_choice_account_accounts_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} do %>
+            <li class="account-dashboard">
+              <div class="account-photo">
+                <% if @account.photo.attached? %>
+                  <%= cl_image_tag(@account.photo.key,
+                                   :width => 100, :height => 100,
+                                   :crop => :thumb, :gravity => :face, :radius => 20) %>
+                <% else %>
+                  <%= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
+                <% end %>
+              </div>
+              <div class="account-name">
+                <%= @account.name %>
+              </div>
             </li>
           <% end %>
-          <li>
-            <%= link_to "Créer une organisation", new_account_path %>
-          </li>
-        </ul>
-      </li>
 
-      <li>
-        <%= link_to edit_account_path(@account) do %>
-          <div style="display: inline-block; text-align: center;">
-            <i class="fas fa-envelope align-middle" style="font-size:20px; vertical-align: middle;"></i>
-            <span>Messages</span>
-          </div>
-        <% end %>
-      </li>
+          <hr>
 
-      <li>
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-        <ul class="collapse list-unstyled" id="pageSubmenu">
-            <li>
-                <a href="#">Page 1</a>
-            </li>
-            <li>
-                <a href="#">Page 2</a>
-            </li>
-            <li>
-                <a href="#">Page 3</a>
-            </li>
-        </ul>
-      </li>
-
-      <li>
-          <a href="#">Activité</a>
-      </li>
-
-      <li>
-        <%= link_to edit_account_path(@account) do %>
-          <div style="display: inline-block; text-align: center;">
-            <i class="fas fa-cog align-middle" style="font-size:20px; vertical-align: middle;"></i>
-            <span>Paramètres</span>
-          </div>
-        <% end %>
-      </li>
-    <% end %>
-
-      <li>
-        <div class = "user_navabar">
-          <div>
-            <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, width: 50, height: 50,  class: "avatar"%>
-          </div>
-          <div class = "user-info">
-            <a href="#logout" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" id="user-information">
-            <%= current_user.first_name %>
-            <%= current_user.last_name %>
-              <div id = "info-user">
-                <%= current_user.email %>
+          <li class="active">
+            <%= link_to account_path(@account) do %>
+              <div style="display: inline-block; text-align: center;">
+                <i class="fas fa-home" style="font-size:20px; vertical-align: middle;"></i>
+                <span>Dashboard</span>
               </div>
-            </a>
-          <ul class="collapse list-unstyled" id="logout">
-            <li>
-              <%= link_to "Information", edit_user_registration_path, class: "dropdown-item" %>
-            </li>
-            <li>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            </li>
-          </ul>
-          </div>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to edit_account_path(@account) do %>
+              <div style="display: inline-block; text-align: center;">
+                <i class="fas fa-cart-arrow-down" style="font-size:20px; vertical-align: middle;"></i>
+                <span>Commandes</span>
+              </div>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to edit_account_path(@account) do %>
+              <div style="display: inline-block; text-align: center;">
+                <i class="fas fa-apple-alt" style="font-size:20px; vertical-align: middle;"></i>
+                <span>Produits</span>
+              </div>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to edit_account_path(@account) do %>
+              <div style="display: inline-block; text-align: center;">
+                <i class="fas fa-user-tie" style="font-size:20px; vertical-align: middle;"></i>
+                <span>Clients</span>
+              </div>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to edit_account_path(@account) do %>
+              <div style="display: inline-block; text-align: center;">
+                <i class="fas fa-envelope align-middle" style="font-size:20px; vertical-align: middle;"></i>
+                <span>Messages</span>
+              </div>
+            <% end %>
+          </li>
+
         </div>
-      </li>
+
+        <div>
+          <hr>
+          <li>
+            <%= link_to edit_account_path(@account) do %>
+              <div style="display: inline-block; text-align: center;">
+                <i class="fas fa-cog align-middle" style="font-size:20px; vertical-align: middle;"></i>
+                <span>Paramètres</span>
+              </div>
+            <% end %>
+          </li>
+        </div>
+      </div>
+    <% end %>
 
   </ul>
 
 </div>
 
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
 

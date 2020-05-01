@@ -2,10 +2,18 @@
   <%= render 'shared/navbar/sidebar' %>
   <div id="dashboard">
     <div class="container-fluid">
-      <h1>
-        Bonjour <%= current_user.first_name %> 👋
-        <%#= link_to "", edit_account_path(@account), class: "fas fa-cog" %>
-      </h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card-welcome">
+              Bonjour <%= current_user.first_name %> 👋
+              <div class="welcome-text">
+                Analysez toute votre activité sur cette page
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <%= render @partial %>
     </div>
