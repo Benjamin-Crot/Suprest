@@ -19,39 +19,40 @@
         <%= link_to "Messages", "#", class: "nav-link" %>
       </li>
 
-      <li class="nav-item">
-        <%= link_to "Dashboard", account_path(current_user.accounts.first), class: "nav-link" %>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Dashboard", account_path(current_user.accounts.first), class: "nav-link" %>
+        </li>
 
 
 
-      <li class="nav-item dropdown">
-        <a href="#logout" data-toggle="collapse" aria-expanded="false" id="user-information">
-          <div class = "user_navabar">
-            <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, width: 50, height: 50,  class: "avatar"%>
-            <div class = "user-info">
-              <div class="caret">
-                <%= current_user.first_name %>
-                <%= current_user.last_name %>
-              </div>
-              <div id = "info-user">
-                <%= current_user.email %>
+        <li class="nav-item dropdown">
+          <a href="#logout" data-toggle="collapse" aria-expanded="false" id="user-information">
+            <div class = "user_navabar">
+              <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, width: 50, height: 50, :default_image => "shop-avatar.png",  class: "avatar"%>
+              <div class = "user-info">
+                <div class="caret">
+                  <%= current_user.first_name %>
+                  <%= current_user.last_name %>
+                </div>
+                <div id = "info-user">
+                  <%= current_user.email %>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <ul class="collapse list-unstyled" id="logout">
-          <li>
-            <%= link_to "Information", edit_user_registration_path, class: "dropdown-item" %>
-          </li>
-          <li>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </li>
-        </ul>
+          <ul class="collapse list-unstyled" id="logout">
+            <li>
+              <%= link_to "Information", edit_user_registration_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </li>
+          </ul>
+            </div>
           </div>
-        </div>
-        </div>
+          </div>
 
 
 <!--         <%#= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -59,7 +60,9 @@
           <%#= link_to "Action", "#", class: "dropdown-item" %>
           <%#= link_to "Another action", "#", class: "dropdown-item" %>
         </div> -->
-      </li>
+        </li>
+      <% end %>
+
     </ul>
   </div>
 </div>
