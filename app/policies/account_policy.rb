@@ -36,4 +36,8 @@ class AccountPolicy < ApplicationPolicy
   def modal_choice_account?
     return true
   end
+
+  def customers?
+    return true
+  end
 end

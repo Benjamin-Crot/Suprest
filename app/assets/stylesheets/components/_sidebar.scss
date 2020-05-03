@@ -82,6 +82,13 @@
     padding: 10px;
     font-size: 1.1em;
     display: block;
+
+      &.active{
+        color: black;
+        i{
+          color: #4A20DF;
+        }
+      }
     }
 
 

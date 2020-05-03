@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     collection do
       get 'modal_choice_account'
     end
+    member do
+      get 'customers'
+    end
     resources :roles
     resources :products, only: [:index, :new, :create, :show] do
       collection do
@@ -18,7 +21,11 @@ Rails.application.routes.draw do
       resources :pricings, only: [:index]
       resources :items, only: [:index, :new, :create]
     end
-    resources :orders, only: [:index, :create]
+    resources :orders, only: [:index, :create] do
+      collection do
+        get 'list_orders'
+      end
+    end
   end
 
   resources :products, only: [:edit, :update, :destroy] do

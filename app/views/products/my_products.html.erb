@@ -1,4 +1,9 @@
-<h1>Mes produits</h1>
+<h2>
+  Mes produits
+    <%= link_to new_account_product_path(@account) do %>
+      <i class="fas fa-plus-square"></i>
+    <% end %>
+</h2>
 
 <% @products.each do |product| %>
   <%= link_to edit_product_path(product) do %>

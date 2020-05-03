@@ -21,7 +21,7 @@
 
   <ul class="list-unstyled components">
 
-    <% unless @accounts.nil? || @account.nil? %>
+    <%# unless @accounts.nil? || @account.nil? %>
     <hr>
       <div class ="flex">
         <div>
@@ -44,8 +44,8 @@
 
           <hr>
 
-          <li class="active">
-            <%= link_to account_path(@account) do %>
+          <li>
+            <%= link_to account_path(@account), class: "#{current? 'active', account_path(@account)}" do %>
               <div style="display: inline-block; text-align: center;">
                 <i class="fas fa-home" style="font-size:20px; vertical-align: middle;"></i>
                 <span>Dashboard</span>
@@ -54,7 +54,7 @@
           </li>
 
           <li>
-            <%= link_to edit_account_path(@account) do %>
+            <%= link_to list_orders_account_orders_path(@account), class: "#{current? 'active', list_orders_account_orders_path(@account)}" do %>
               <div style="display: inline-block; text-align: center;">
                 <i class="fas fa-cart-arrow-down" style="font-size:20px; vertical-align: middle;"></i>
                 <span>Commandes</span>
@@ -63,7 +63,7 @@
           </li>
 
           <li>
-            <%= link_to edit_account_path(@account) do %>
+            <%= link_to my_products_account_products_path(@account), class: "#{current? 'active', my_products_account_products_path(@account)}" do %>
               <div style="display: inline-block; text-align: center;">
                 <i class="fas fa-apple-alt" style="font-size:20px; vertical-align: middle;"></i>
                 <span>Produits</span>
@@ -72,7 +72,7 @@
           </li>
 
           <li>
-            <%= link_to edit_account_path(@account) do %>
+            <%= link_to customers_account_path(@account), class: "#{current? 'active', customers_account_path(@account)}" do %>
               <div style="display: inline-block; text-align: center;">
                 <i class="fas fa-user-tie" style="font-size:20px; vertical-align: middle;"></i>
                 <span>Clients</span>
@@ -81,7 +81,7 @@
           </li>
 
           <li>
-            <%= link_to edit_account_path(@account) do %>
+            <%= link_to edit_account_path(@account), class: "#{current? 'active', edit_account_path(@account)}" do %>
               <div style="display: inline-block; text-align: center;">
                 <i class="fas fa-envelope align-middle" style="font-size:20px; vertical-align: middle;"></i>
                 <span>Messages</span>
@@ -94,7 +94,7 @@
         <div>
           <hr>
           <li>
-            <%= link_to edit_account_path(@account) do %>
+            <%= link_to edit_account_path(@account), class: "#{current? 'active', edit_account_path(@account)}" do %>
               <div style="display: inline-block; text-align: center;">
                 <i class="fas fa-cog align-middle" style="font-size:20px; vertical-align: middle;"></i>
                 <span>Paramètres</span>
@@ -103,7 +103,7 @@
           </li>
         </div>
       </div>
-    <% end %>
+    <%# end %>
 
   </ul>
 
