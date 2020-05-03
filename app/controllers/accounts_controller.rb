@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
 
+  layout "dashboard", only: [:show]
+
   def index
   end
 

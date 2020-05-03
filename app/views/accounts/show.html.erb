@@ -1,25 +1,17 @@
-<div class="wrapper">
-  <%= render 'shared/navbar/sidebar' %>
-  <div id="dashboard">
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="card-welcome">
-              Bonjour <%= current_user.first_name %> 👋
-              <div class="welcome-text">
-                Analysez toute votre activité sur cette page
-              </div>
-            </div>
-          </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-welcome">
+        Bonjour <%= current_user.first_name %> 👋
+        <div class="welcome-text">
+          Analysez toute votre activité sur cette page
         </div>
       </div>
-
-      <%= render @partial %>
     </div>
   </div>
 </div>
-
+<%= render @partial %>
 
 
 

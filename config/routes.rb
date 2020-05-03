@@ -18,7 +18,11 @@ Rails.application.routes.draw do
       resources :pricings, only: [:index]
       resources :items, only: [:index, :new, :create]
     end
-    resources :orders, only: [:index, :create]
+    resources :orders, only: [:index, :create] do
+      collection do
+        get 'list_orders'
+      end
+    end
   end
 
   resources :products, only: [:edit, :update, :destroy] do

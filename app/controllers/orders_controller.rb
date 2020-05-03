@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  layout "dashboard", only: [:list_orders]
+
   def index
     @account = Account.find(params[:account_id])
     @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
@@ -17,9 +19,15 @@ class OrdersController < ApplicationController
     return sum.fdiv(100)
   end
 
+  def list_orders
+    @account = Account.find(params[:account_id])
+    @orders = Order.where(supplier: @account.id, status: true)
+    authorize @orders
+  end
+
   helper_method :total_order
 end
 
-@account = Account.find(params[:account_id])
-@product = Product.find(params[:product_id])
-@pricings = policy_scope(@product.pricing).order(amount_cents: :asc)
+# @account = Account.find(params[:account_id])
+# @product = Product.find(params[:product_id])
+# @pricings = policy_scope(@product.pricing).order(amount_cents: :asc)

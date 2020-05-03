@@ -1,0 +1,48 @@
+<%#= render "accounts/dashboard" %>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-ongoing-tab" data-toggle="tab" href="#nav-ongoing" role="tab" aria-controls="nav-ongoing" aria-selected="true">Commandes en cours</a>
+    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">Historique</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-ongoing" role="tabpanel" aria-labelledby="nav-ongoing-tab">
+    <div class="card-dashboard-basic">
+<!--       <h5>Commandes</h5> -->
+
+      <table>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.account.name %></td>
+            <td><%= order.items.sum(:amount_cents).fdiv(100) %>€</td>
+            <td><%= order.items.count %> article(s)</td>
+            <td><%= order.steps.last.name %></td>
+            <td><%= order.steps.last.created_at.strftime('%d/%m/%Y') %></td>
+            <td style="color: grey;"><i class="fas fa-ellipsis-v"></i></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </div>
+  <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+    <div class="card-dashboard-basic">
+
+      <table>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.account.name %></td>
+            <td><%= order.items.sum(:amount_cents).fdiv(100) %>€</td>
+            <td><%= order.items.count %> article(s)</td>
+            <td><%= order.steps.last.name %></td>
+            <td><%= order.steps.last.created_at.strftime('%d/%m/%Y') %></td>
+            <td style="color: grey;"><i class="fas fa-ellipsis-v"></i></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
