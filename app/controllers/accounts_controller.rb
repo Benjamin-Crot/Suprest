@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
 
-  layout "dashboard", only: [:show]
+  layout "dashboard", only: [:show, :edit, :customers]
 
   def index
   end
@@ -85,6 +85,12 @@ class AccountsController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def customers
+    @account = Account.find(params[:id])
+    authorize @account
+    @accounts = Account.joins(:orders).where("orders.supplier" => current_user.id, "orders.status" => true)
   end
 
   helper_method :list_users_roles, :convert_is_admin_to_string

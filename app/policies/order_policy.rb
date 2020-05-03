@@ -12,4 +12,5 @@ class OrderPolicy < ApplicationPolicy
   def list_orders?
     return true
   end
+
 end

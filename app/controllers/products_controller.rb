@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  layout "dashboard", only: [:my_products]
+  layout "dashboard", only: [:new, :edit, :my_products]
 
   def index
     @all_accounts = Account.all
