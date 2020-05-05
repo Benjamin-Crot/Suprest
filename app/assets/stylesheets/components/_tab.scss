@@ -1,0 +1,30 @@
+nav {
+    // margin: 30px;
+  margin-bottom: 16px;
+
+  .nav-tabs {
+
+    // justify-content: center;
+    border: none;
+    // margin: 20px 0;
+
+    .nav-item {
+      color: grey;
+      font-weight: bold;
+      border: none;
+      background: transparent;
+      text-transform: capitalize;
+    }
+    .nav-link.active {
+      border-bottom: 4px solid $purple;
+      background: transparent;
+      color: black;
+    }
+
+  div .backblue{
+    background: linear-gradient(#6382c4, #314570);
+    letter-spacing: 2px;
+
+    }
+  }
+}

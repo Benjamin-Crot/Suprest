@@ -16,7 +16,7 @@
     // color: #fff;
     transition: all 0.3s;
     padding-left: 2%;
-    padding-right: 2%;
+    // padding-right: 2%;
     // background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
     background: white;
 
@@ -85,6 +85,7 @@
 
       &.active{
         color: black;
+        border-right: 3px solid $purple;
         i{
           color: #4A20DF;
         }

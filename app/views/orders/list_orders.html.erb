@@ -1,48 +1,97 @@
-<%#= render "accounts/dashboard" %>
+<h3>Mes commandes</h3>
+
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-ongoing-tab" data-toggle="tab" href="#nav-ongoing" role="tab" aria-controls="nav-ongoing" aria-selected="true">Commandes en cours</a>
+    <a class="nav-item nav-link active" id="nav-ongoing-tab" data-toggle="tab" href="#nav-ongoing" role="tab" aria-controls="nav-ongoing" aria-selected="true">en cours (<%= @orders.count %>)</a>
     <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">Historique</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-ongoing" role="tabpanel" aria-labelledby="nav-ongoing-tab">
-    <div class="card-dashboard-basic">
-<!--       <h5>Commandes</h5> -->
 
-      <table>
-        <% @orders.each do |order| %>
-          <tr>
-            <td><%= order.account.name %></td>
-            <td><%= order.items.sum(:amount_cents).fdiv(100) %>€</td>
-            <td><%= order.items.count %> article(s)</td>
-            <td><%= order.steps.last.name %></td>
-            <td><%= order.steps.last.created_at.strftime('%d/%m/%Y') %></td>
-            <td style="color: grey;"><i class="fas fa-ellipsis-v"></i></td>
-          </tr>
-        <% end %>
-      </table>
+    <div class="table-model">
+      <% @orders.each do |order| %>
+        <div class="Rtable Rtable--5cols Rtable--collapse">
+          <div class="Rtable-cell--head">
+            <div class="avatar-account-name">
+              <div class="avatar-account-square">
+                <% if order.account.photo.attached? %>
+                  <%= cl_image_tag(order.account.photo.key,
+                                   :width => 100, :height => 100,
+                                   :crop => :thumb, :gravity => :face, :radius => 20) %>
+                <% else %>
+                  <%= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
+                <% end %>
+              </div>
+              <div class="account-name">
+                <%= order.account.name %>
+              </div>
+            </div>
+          </div>
+
+          <div class="Rtable-cell">
+            <%= order.items.sum(:amount_cents).fdiv(100) %>€
+          </div>
+
+          <div class="Rtable-cell">
+            <%= order.items.count %> article(s)
+          </div>
+
+          <div class="Rtable-cell">
+            <%= order.steps.last.name %>
+          </div>
+
+          <div class="Rtable-cell Rtable-cell--foot">
+            <%= order.steps.last.created_at.strftime('%d/%m/%Y') %>
+          </div>
+        </div>
+        <hr>
+      <% end %>
     </div>
 
   </div>
-  <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
-    <div class="card-dashboard-basic">
 
-      <table>
-        <% @orders.each do |order| %>
-          <tr>
-            <td><%= order.account.name %></td>
-            <td><%= order.items.sum(:amount_cents).fdiv(100) %>€</td>
-            <td><%= order.items.count %> article(s)</td>
-            <td><%= order.steps.last.name %></td>
-            <td><%= order.steps.last.created_at.strftime('%d/%m/%Y') %></td>
-            <td style="color: grey;"><i class="fas fa-ellipsis-v"></i></td>
-          </tr>
-        <% end %>
-      </table>
+  <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+    <div class="table-model">
+      <% @orders.each do |order| %>
+        <div class="Rtable Rtable--5cols Rtable--collapse">
+          <div class="Rtable-cell--head">
+            <div class="avatar-account-name">
+              <div class="avatar-account-square">
+                <% if order.account.photo.attached? %>
+                  <%= cl_image_tag(order.account.photo.key,
+                                   :width => 100, :height => 100,
+                                   :crop => :thumb, :gravity => :face, :radius => 20) %>
+                <% else %>
+                  <%= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
+                <% end %>
+              </div>
+              <div class="account-name">
+                <%= order.account.name %>
+              </div>
+            </div>
+          </div>
+
+          <div class="Rtable-cell">
+            <%= order.items.sum(:amount_cents).fdiv(100) %>€
+          </div>
+
+          <div class="Rtable-cell">
+            <%= order.items.count %> article(s)
+          </div>
+
+          <div class="Rtable-cell">
+            <%= order.steps.last.name %>
+          </div>
+
+          <div class="Rtable-cell Rtable-cell--foot">
+            <%= order.steps.last.created_at.strftime('%d/%m/%Y') %>
+          </div>
+        </div>
+        <hr>
+      <% end %>
     </div>
 
   </div>
 </div>
-
 

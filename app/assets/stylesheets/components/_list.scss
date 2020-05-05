@@ -1,0 +1,76 @@
+.table-model{
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // padding-left: 20px;
+  // padding-top: 20px;
+  // padding-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #3c3c3c;
+  font-weight: bold;
+}
+
+#list-orders{
+
+  table{
+    border-collapse:separate;
+    border-spacing: 0 0.5em;
+    td {
+      padding-top: 16px;
+      padding-bottom: 16px;
+      padding-right: 20px;
+      border-bottom: solid 1px #cecece;
+    }
+    tr{
+      margin-bottom: 5px;
+
+    }
+  }
+}
+
+@media all and (max-width: 900px) {
+  .Rtable--collapse  {
+    display: block;
+    > .Rtable-cell { width: 100% !important; }
+    > .Rtable-cell--head { width: 100% !important; }
+    > .Rtable-cell--foot { margin-bottom: 1em; }
+  }
+}
+
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  // margin: 0 0 3em 0;
+  padding: 0;
+  align-items: center;
+}
+.Rtable-cell {
+  // height: 51px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  // Default to full width
+  padding: 0.2em 1.2em;
+  overflow: hidden; // Or flex might break
+  list-style: none;
+  // border: solid 3px white;
+  // background: fade(slategrey,20%);
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+}
+
+.Rtable-cell--head {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  // Default to full width
+  padding: 0.8em 1.2em;
+  overflow: hidden; // Or flex might break
+  list-style: none;
+  // border: solid 3px white;
+  // background: fade(slategrey,20%);
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+}
+
+.Rtable--2cols > .Rtable-cell  { width: 50%; }
+.Rtable--3cols > .Rtable-cell  { width: 33.33%; }
+.Rtable--4cols > .Rtable-cell  { width: 25%; }
+.Rtable--5cols > .Rtable-cell  { width: 18%; } .Rtable-cell--head  { width: 28%; }
+.Rtable--6cols > .Rtable-cell  { width: 16.6%; }
