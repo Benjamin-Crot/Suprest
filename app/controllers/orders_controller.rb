@@ -25,6 +25,16 @@ class OrdersController < ApplicationController
     authorize @orders
   end
 
+  def modal_details_orders_supplier
+    @order = Order.find(params[:id])
+    @step_new = Step.new
+    authorize @order
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   helper_method :total_order
 end
 

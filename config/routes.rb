@@ -25,6 +25,9 @@ Rails.application.routes.draw do
       collection do
         get 'list_orders'
       end
+      member do
+        get 'modal_details_orders_supplier'
+      end
     end
   end
 

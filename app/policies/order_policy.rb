@@ -13,4 +13,8 @@ class OrderPolicy < ApplicationPolicy
     return true
   end
 
+  def modal_details_orders_supplier?
+    return true
+  end
+
 end
