@@ -58,6 +58,13 @@
 
   &:hover{
     background: linear-gradient(199deg, #461edd, #9945fc 100%);
+    color: white;
+  }
+
+  &.inline-form{
+    margin-left: 20px;
+    width: 50%;
+
   }
 }
 // position: absolute !important;

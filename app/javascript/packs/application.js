@@ -36,9 +36,3 @@ $(document).click(function(e) {
       $('.collapse').collapse('hide');
     }
 });
-
-// $(document).click(function(e) {
-//   if (!$(e.target).is('.panel-body')) {
-//       $('.collapse').collapse('hide');
-//     }
-// });

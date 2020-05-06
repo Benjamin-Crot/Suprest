@@ -1,0 +1,41 @@
+.modal-order-supplier{
+  .modal-header-orders-supplier{
+    background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
+    color: white;
+    button{
+      color: white;
+    }
+  }
+
+  .modal-body-orders-supplier{
+    .container-modal{
+      margin-left: 20px;
+    }
+    nav{
+      #myTab{
+        justify-content: center;
+      }
+    }
+    #status{
+      i{
+        color: grey;
+      }
+
+      .last_status_name{
+        padding-left: 11px;
+        padding-bottom: 30px;
+        margin-left: 7px;
+      }
+
+      .status_name{
+        border-left: 2px grey solid;
+        padding-left: 11px;
+        padding-bottom: 30px;
+        margin-left: 7px;
+      }
+
+    }
+
+  }
+
+}
