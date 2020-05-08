@@ -19,9 +19,11 @@
     <ul class="navbar-nav mr-auto">
 
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Dashboard", account_path(current_user.accounts.first), class: "nav-link" %>
-        </li>
+        <% unless current_user.accounts.empty? %>
+          <li class="nav-item">
+            <%= link_to "Dashboard", account_path(current_user.accounts.first), class: "nav-link" %>
+          </li>
+        <% end %>
 
         <li class="nav-item dropdown">
           <a href="#logout" data-toggle="collapse" aria-expanded="false" id="user-information">
