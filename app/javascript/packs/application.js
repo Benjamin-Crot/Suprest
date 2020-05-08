@@ -30,9 +30,34 @@ global.$ = jQuery;
 import "controllers"
 import Rails from '@rails/ujs';
 
+document.addEventListener("turbolinks:load", function() {
+  $(document).click(function(e) {
+    if (!$(e.target).is('.panel-body') && !$(e.target).closest('.panel-body').length) {
+        $('.collapse').collapse('hide');
+      }
+  });
 
-$(document).click(function(e) {
-  if (!$(e.target).is('.panel-body') && !$(e.target).closest('.panel-body').length) {
-      $('.collapse').collapse('hide');
-    }
-});
+  $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+          $('#dismiss').addClass('active');
+          $('.overlay').addClass('active');
+          $('#sidebarCollapse').addClass('active');
+      });
+
+
+      $('#dismiss, .overlay').on('click', function () {
+          // hide sidebar
+          $('#sidebar').removeClass('active');
+          // hide overlay
+          $('#dismiss').removeClass('active');
+          // hide overlay
+          $('.overlay').removeClass('active');
+          $('#sidebarCollapse').removeClass('active');
+      });
+  });
+})
+
+
+
+

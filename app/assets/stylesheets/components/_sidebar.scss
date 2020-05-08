@@ -1,3 +1,6 @@
+
+
+
 .wrapper {
   display: flex;
   width: 100%;
@@ -10,37 +13,59 @@
 
 #wrapper-2 {
   width: 100%;
-
-  // #dashboard{
-  //   width: 80%;
-  //   padding: 40px;
-  //   min-height: 90vh;
-  //   transition: all 0.3s;
-  //   position: absolute;
-  //   top: 50px;
-  //   right: 0;
-  // }
 }
 
 .content{
   margin: 16px;
 }
 
-#sidebar {
+#sidebar.active {
+    margin-left: -250px;
+}
 
-    width: 20%;
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
-    // background: #250C4F;
-    // color: #fff;
-    transition: all 0.3s;
-    padding-left: 2%;
-    // padding-right: 2%;
-    // background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
-    background: white;
+// #burger-menu{
+//   display: none;
+// }
+
+#sidebarCollapse{
+  display: none;
+}
+
+#dismiss {
+    display:none;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    /* top right corner of the sidebar */
+    top: 10px;
+    right: 10px;
+}
+
+#sidebar {
+  width: 250px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+  background: white;
+  color: #fff;
+  transition: all 0.3s;
+  margin-bottom: 0;
+
+    // width: 20%;
+    // position: sticky;
+    // top: 0;
+    // left: 0;
+    // height: 100vh;
+    // z-index: 999;
+    // // background: #250C4F;
+    // // color: #fff;
+    // transition: all 0.3s;
+    // padding-left: 2%;
+    // // padding-right: 2%;
+    // // background: linear-gradient(124deg, rgba(70,30,221,1) 0%, rgba(153,69,252,1) 100%);
+    // background: white;
 
     a{
       text-decoration: none;
@@ -50,6 +75,8 @@
         color: rgba(0, 0, 0, 0.7);
       }
     }
+
+
 
     .flex{
       height: 86vh;
@@ -96,7 +123,7 @@
 
     ul.components {
     // padding: 20px 0;
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
     // border-bottom: 1px solid #47748b;
     }
 
@@ -186,6 +213,29 @@
 // }
 
 
+
+@media (max-width: 768px) {
+    #sidebar {
+      position: fixed;
+      margin-left: -250px;
+    }
+    #sidebar.active {
+      margin-left: 0px;
+      // width: 100%;
+    }
+
+    #dismiss.active{
+      display: block;
+    }
+
+    #sidebarCollapse{
+      display: block;
+    }
+
+    .navbar-lewagon{
+      justify-content: space-between;
+    }
+}
 
 
 
