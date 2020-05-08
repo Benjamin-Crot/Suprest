@@ -1,11 +1,16 @@
-<h1>Nouvelle organisation</h1>
+<div class="header">
+  <h1>Création d'une organisation</h1>
+  <h3>Renseignez le nom de votre organisation, son adresse et son type</h3>
+
+</div>
 
 <div class="form">
   <%= simple_form_for(@account) do |f| %>
     <%= f.input :name, label: false, placeholder: "Nom de l'entreprise"%>
     <%= f.input :address, label: false, placeholder: 'Adresse'%>
-    <%= f.input :category, collection: [ "Restaurateur", "Fournisseur" ]%>
-    <%= f.input :photo, as: :file %>
-    <%= f.button :submit, "Enregistrer", class: "btn-back btn-flat"%>
+    <%= f.input :category, as: :select, label: false, collection: [ "--Selectionnez un type d'organisation--", "Restaurateur", "Fournisseur" ], selected: ["--Selectionnez un type d'organisation--"]%>
+    <%#= f.input :photo, as: :file %>
+    <%= f.button :submit, "Enregistrer", class: "btn-submit"%>
   <% end %>
 </div>
+

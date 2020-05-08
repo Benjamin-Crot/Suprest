@@ -23,7 +23,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    root_path
+    if current_user.accounts.empty?
+      new_account_path
+    else
+      account_path(current_user.accounts.last)
+    # root_path
+    end
   end
 
   private
