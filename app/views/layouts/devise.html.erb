@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Suprest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+  </head>
+
+  <body>
+    <div class= "setup-container">
+      <div class="container-fluid">
+        <div class= "navbar-brand">
+          <%= image_tag "logo.png", alt: "Mon image", width: 90 %>
+        </div>
+        <div class="setup-content">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="setup-background">
+        <%= render 'shared/setup_layout/message' %>
+      </div>
+    </div>
+
+    <%= render 'shared/flashes' %>
+  </body>
+</html>
+
+

@@ -1,14 +1,15 @@
 class AccountsController < ApplicationController
-
   layout "dashboard", only: [:show, :edit, :customers]
+  # layout "setup", only: [:new]
 
   def index
   end
 
   def new
-    @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
+    # @accounts = Account.joins(:roles).where("roles.user_id" => current_user.id)
     @account = Account.new
     authorize @account
+    render layout: "setup"
   end
 
   def create
@@ -100,5 +101,6 @@ class AccountsController < ApplicationController
   def account_params
     params.require(:account).permit(:name, :address, :category, :photo)
   end
+
 
 end
