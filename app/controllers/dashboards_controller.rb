@@ -13,7 +13,6 @@ class DashboardsController < ApplicationController
 
   def welcome
     @user = current_user
-    if @user
     authorize @dashboard
   end
 
