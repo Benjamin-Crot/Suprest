@@ -46,11 +46,19 @@
   }
 }
 
+#logout{
+  position: fixed;
+}
+
 
 
 @media (max-width: 576px) {
   .user_navbar_mobile{
     display: flex;
+  }
+
+  .user-info{
+    display: none;
   }
 }
 
