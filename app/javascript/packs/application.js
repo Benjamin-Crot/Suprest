@@ -45,6 +45,7 @@ document.addEventListener("turbolinks:load", function() {
       $('#sidebarCollapse').on('click', function () {
           $('#sidebar').toggleClass('active');
           $('#dismiss').addClass('active');
+          $('.content').addClass('active');
           $('.overlay').addClass('active');
           $('#sidebarCollapse').addClass('active');
       });
@@ -53,6 +54,7 @@ document.addEventListener("turbolinks:load", function() {
       $('#dismiss, .overlay').on('click', function () {
           // hide sidebar
           $('#sidebar').removeClass('active');
+          $('.content').removeClass('active');
           // hide overlay
           $('#dismiss').removeClass('active');
           // hide overlay
@@ -61,6 +63,9 @@ document.addEventListener("turbolinks:load", function() {
       });
   });
 })
+
+
+
 
 
 
