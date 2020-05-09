@@ -62,11 +62,8 @@ class ProductsController < ApplicationController
 
   def my_products
     @account = Account.find(params[:account_id])
-    @products = Product.where("account_id" == @account.id)
+    @products = @account.products
     authorize @products
-  end
-
-  def home
   end
 
   def new
