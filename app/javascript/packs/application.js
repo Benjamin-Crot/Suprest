@@ -30,6 +30,10 @@ global.$ = jQuery;
 import "controllers"
 import Rails from '@rails/ujs';
 
+import { previewImageOnFileSelect } from 'components/photo_preview';
+
+// import '../components/previewImageOnFileSelect';
+
 document.addEventListener("turbolinks:load", function() {
   $(document).click(function(e) {
     if (!$(e.target).is('.panel-body') && !$(e.target).closest('.panel-body').length) {

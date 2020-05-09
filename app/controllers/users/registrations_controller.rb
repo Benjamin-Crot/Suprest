@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  layout "dashboard", only: [:edit]
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -25,6 +27,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def edit
   #   super
   # end
+
+  def edit
+    @account = @user.accounts.last
+    render 'devise/registrations/edit'
+  end
 
   # PUT /resource
   # def update
