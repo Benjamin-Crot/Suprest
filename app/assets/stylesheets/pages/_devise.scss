@@ -1,0 +1,45 @@
+.remember-me-container{
+  width: 100%;
+  font-family: Product Sans,sans-serif;
+  font-size: 14px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  p{
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .form-check-input{
+    margin-top: 0.1rem;
+  }
+
+}
+
+.forget_password{
+    text-align: right;
+    margin-bottom: 20px;
+  a{
+    text-decoration: underline;
+    color: #6d7d8c;
+  }
+}
+
+.link_to_sign_in{
+  text-align: center;
+  margin-top: 20px;
+  a{
+    text-decoration: underline;
+    color: #6d7d8c;
+  }
+}
+
+.custom-form{
+  display: inline-block;
+}
+
+.user-full-name-sign-in{
+  display: inline-block;
+  width: 49%;
+}
