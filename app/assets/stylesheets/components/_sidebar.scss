@@ -50,7 +50,7 @@
   z-index: 999;
   background: white;
   color: #fff;
-  transition: all 0.3s;
+  transition: all 0.9s;
   margin-bottom: 0;
 
     // width: 20%;
@@ -221,7 +221,12 @@
     }
     #sidebar.active {
       margin-left: 0px;
+      width: 100vw;
       // width: 100%;
+    }
+
+    .content.active {
+      overflow: hidden;
     }
 
     #dismiss.active{

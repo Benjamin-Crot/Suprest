@@ -11,31 +11,10 @@
       <i class="fas fa-bars"></i>
   </button> -->
 
-<!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
- -->
-  <div class = "user_navabar" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <% if current_user.photo.attached? %>
-      <%= cl_image_tag(current_user.photo.key,
-                       :width => 100, :height => 100,
-                       :crop => :thumb, :gravity => :face, :radius => 20, class: "avatar") %>
-    <% else %>
-      <i class="fas fa-user-circle" style="font-size: 39px;"></i>
-      <%#= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
-    <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <%#= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, width: 50, height: 50, :radius => 20 class: "avatar"%>
-    <div class = "user-info">
-      <div class="caret">
-        <%= current_user.first_name %>
-        <%= current_user.last_name %>
-      </div>
-      <div id = "info-user">
-        <%= current_user.email %>
-      </div>
-    </div>
-  </div>
-<!--   </button>
- -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
