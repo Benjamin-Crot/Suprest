@@ -65,15 +65,17 @@
 
           <ul class="collapse list-unstyled" id="logout">
             <li>
-              <%= link_to "Information", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Mon compte", edit_user_registration_path, class: "dropdown-item" %>
             </li>
             <li>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </li>
           </ul>
         </li>
       <% end %>
     </ul>
+
+
   </div>
 </div>
 

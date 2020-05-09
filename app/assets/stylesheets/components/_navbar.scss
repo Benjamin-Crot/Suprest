@@ -48,7 +48,26 @@
 
 #logout{
   position: fixed;
+  right: 0px;
+  margin-top: 7px;
+  background: white;
+  border: solid 1px grey;
 }
+
+.custom-popover li {
+  border: none!important;
+  text-align: center;
+}
+
+.custom-popover li:nth-child(2) {
+  border-top: 1px solid #ccc!important;
+}
+
+.custom-popover li:last-child {
+  border-top: 1px solid #ccc!important;
+}
+
+
 
 
 

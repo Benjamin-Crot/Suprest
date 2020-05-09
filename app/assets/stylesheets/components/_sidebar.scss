@@ -32,13 +32,14 @@
 }
 
 #dismiss {
-    display:none;
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    /* top right corner of the sidebar */
-    top: 10px;
-    right: 10px;
+  display: none;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0px;
+  right: 21px;
+  padding: 10px;
+  font-size: 26px;
 }
 
 #sidebar {
@@ -223,6 +224,10 @@
       margin-left: 0px;
       width: 100vw;
       // width: 100%;
+    }
+
+    #logout{
+      right: 0px;
     }
 
     .content.active {
