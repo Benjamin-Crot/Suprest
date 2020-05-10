@@ -1,0 +1,39 @@
+<div class="table-model">
+  <%= link_to modal_details_orders_supplier_account_order_path(@account, order),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-order'} do %>
+    <div class="Rtable Rtable--5cols Rtable--collapse">
+      <div class="Rtable-cell--head">
+        <div class="avatar-account-name">
+          <div class="avatar-account-square">
+            <% if order.account.photo.attached? %>
+              <%= cl_image_tag(order.account.photo.key,
+                               :width => 100, :height => 100,
+                               :crop => :thumb, :gravity => :face, :radius => 20) %>
+            <% else %>
+              <%= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
+            <% end %>
+          </div>
+          <div class="account-name">
+            <%= order.account.name %>
+          </div>
+        </div>
+      </div>
+
+      <div class="Rtable-cell">
+        <%= order.items.sum(:amount_cents).fdiv(100) %>€
+      </div>
+
+      <div class="Rtable-cell">
+          <%= order.items.count %> article(s)
+      </div>
+
+      <div class="Rtable-cell">
+          <%= order.steps.last.name %>
+      </div>
+
+      <div class="Rtable-cell Rtable-cell--foot">
+        <%= order.steps.last.created_at.strftime('%d/%m/%Y') %>
+        <i style="padding-left:10px;" class="fas fa-ellipsis-v"></i>
+      </div>
+    </div>
+  <% end %>
+</div>
