@@ -22,6 +22,11 @@ class OrdersController < ApplicationController
   def list_orders
     @account = Account.find(params[:account_id])
     @orders = Order.where(supplier: @account.id, status: true)
+    @orders_step_1 = @orders.filter_by_step("Validée")
+    @orders_step_2 = @orders.filter_by_step("En cours de traitement")
+    @orders_step_3 = @orders.filter_by_step("En cours de livraison")
+    @orders_step_4 = @orders.filter_by_step("Livrée")
+    # @steps = Step.where(name: "Validée")
     authorize @orders
   end
 

@@ -1,105 +1,59 @@
 <h3>Mes commandes</h3>
 
-<nav>
+<nav class="tabbable">
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-ongoing-tab" data-toggle="tab" href="#nav-ongoing" role="tab" aria-controls="nav-ongoing" aria-selected="true">en cours (<%= @orders.count %>)</a>
-    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">Historique</a>
+    <a class="nav-item nav-link active" id="nav-ongoing-tab" data-toggle="tab" href="#step1" role="tab" aria-controls="nav-ongoing" aria-selected="true">Validée (<%= @orders_step_1.length %>)</a>
+    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#step2" role="tab" aria-controls="nav-pending" aria-selected="false">En cours de traitement (<%= @orders_step_2.length %>)</a>
+    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#step3" role="tab" aria-controls="nav-pending" aria-selected="false">En cours de livraison (<%= @orders_step_3.length %>)</a>
+    <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#step4" role="tab" aria-controls="nav-pending" aria-selected="false">Livrée (<%= @orders_step_4.length %>)</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-ongoing" role="tabpanel" aria-labelledby="nav-ongoing-tab">
-
-    <div class="table-model">
-      <% @orders.each do |order| %>
-        <%= link_to modal_details_orders_supplier_account_order_path(@account, order),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-order'} do %>
-          <div class="Rtable Rtable--5cols Rtable--collapse">
-            <div class="Rtable-cell--head">
-              <div class="avatar-account-name">
-                <div class="avatar-account-square">
-                  <% if order.account.photo.attached? %>
-                    <%= cl_image_tag(order.account.photo.key,
-                                     :width => 100, :height => 100,
-                                     :crop => :thumb, :gravity => :face, :radius => 20) %>
-                  <% else %>
-                    <%= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
-                  <% end %>
-                </div>
-                <div class="account-name">
-                  <%= order.account.name %>
-                </div>
-              </div>
-            </div>
-
-            <div class="Rtable-cell">
-              <%= order.items.sum(:amount_cents).fdiv(100) %>€
-            </div>
-
-            <div class="Rtable-cell">
-                <%= order.items.count %> article(s)
-            </div>
-
-            <div class="Rtable-cell">
-                <%= order.steps.last.name %>
-            </div>
-
-            <div class="Rtable-cell Rtable-cell--foot">
-              <%= order.steps.last.created_at.strftime('%d/%m/%Y') %>
-              <i style="padding-left:10px;" class="fas fa-ellipsis-v"></i>
-            </div>
-          </div>
-        <% end %>
-        <hr>
+  <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="nav-ongoing-tab">
+    <% if @orders_step_1.empty? %>
+      <p>Vous n'avez pas de commande validée</p>
+    <% else %>
+      <% @orders_step_1.each do |order| %>
+        <%= render 'order', order: order %>
       <% end %>
-    </div>
-
+    <% end %>
   </div>
 
-  <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
-    <div class="table-model">
-      <% @orders.each do |order| %>
-        <div class="Rtable Rtable--5cols Rtable--collapse">
-          <div class="Rtable-cell--head">
-            <div class="avatar-account-name">
-              <div class="avatar-account-square">
-                <% if order.account.photo.attached? %>
-                  <%= cl_image_tag(order.account.photo.key,
-                                   :width => 100, :height => 100,
-                                   :crop => :thumb, :gravity => :face, :radius => 20) %>
-                <% else %>
-                  <%= image_tag 'shop-avatar.png', style: 'width:46px; height:46px;' %>
-                <% end %>
-              </div>
-              <div class="account-name">
-                <%= order.account.name %>
-              </div>
-            </div>
-          </div>
-
-          <div class="Rtable-cell">
-            <%= order.items.sum(:amount_cents).fdiv(100) %>€
-          </div>
-
-          <div class="Rtable-cell">
-            <%= order.items.count %> article(s)
-          </div>
-
-          <div class="Rtable-cell">
-            <%= order.steps.last.name %>
-          </div>
-
-          <div class="Rtable-cell Rtable-cell--foot">
-            <%= order.steps.last.created_at.strftime('%d/%m/%Y') %>
-          </div>
-        </div>
-        <hr>
+  <div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="nav-pending-tab">
+    <% if @orders_step_2.empty? %>
+      <p>Vous n'avez pas de commande en cours de traitement</p>
+    <% else %>
+      <% @orders_step_2.each do |order| %>
+        <%= render 'order', order: order %>
       <% end %>
-    </div>
-
+    <% end %>
   </div>
+
+  <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="nav-pending-tab">
+    <% if @orders_step_3.empty? %>
+      <p>Vous n'avez pas de commande en cours de livraison</p>
+    <% else %>
+      <% @orders_step_3.each do |order| %>
+        <%= render 'order', order: order %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="nav-pending-tab">
+    <% if @orders_step_4.empty? %>
+      <p>Vous n'avez pas de commande livrée</p>
+    <% else %>
+      <% @orders_step_4.each do |order| %>
+        <%= render 'order', order: order %>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>
 
 
-</div>
+<!-- </div>
+ -->
 <div id="modal-order" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content"></div>
