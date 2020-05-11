@@ -1,3 +1,14 @@
+
+// -> to have scroll horizontal on small device
+.tabbable .nav-tabs {
+   overflow-x: auto;
+   overflow-y:hidden;
+   flex-wrap: nowrap;
+}
+.tabbable .nav-tabs .nav-link {
+  white-space: nowrap;
+}
+
 nav {
     // margin: 30px;
   margin-bottom: 16px;

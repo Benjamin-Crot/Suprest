@@ -1,6 +1,6 @@
 <h3>Mes commandes</h3>
 
-<nav>
+<nav class="tabbable">
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-ongoing-tab" data-toggle="tab" href="#step1" role="tab" aria-controls="nav-ongoing" aria-selected="true">Validée (<%= @orders_step_1.length %>)</a>
     <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#step2" role="tab" aria-controls="nav-pending" aria-selected="false">En cours de traitement (<%= @orders_step_2.length %>)</a>
@@ -8,7 +8,7 @@
     <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#step4" role="tab" aria-controls="nav-pending" aria-selected="false">Livrée (<%= @orders_step_4.length %>)</a>
   </div>
 </nav>
-<div class="tab-content" id="step1">
+<div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="nav-ongoing-tab">
     <% if @orders_step_1.empty? %>
       <p>Vous n'avez pas de commande validée</p>
@@ -30,14 +30,22 @@
   </div>
 
   <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="nav-pending-tab">
-    <% @orders_step_3.each do |order| %>
-      <%= render 'order', order: order %>
+    <% if @orders_step_3.empty? %>
+      <p>Vous n'avez pas de commande en cours de livraison</p>
+    <% else %>
+      <% @orders_step_3.each do |order| %>
+        <%= render 'order', order: order %>
+      <% end %>
     <% end %>
   </div>
 
   <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="nav-pending-tab">
-    <% @orders_step_4.each do |order| %>
-      <%= render 'order', order: order %>
+    <% if @orders_step_4.empty? %>
+      <p>Vous n'avez pas de commande livrée</p>
+    <% else %>
+      <% @orders_step_4.each do |order| %>
+        <%= render 'order', order: order %>
+      <% end %>
     <% end %>
   </div>
 
