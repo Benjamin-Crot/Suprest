@@ -3,7 +3,14 @@
     <%#= image_tag "logo.png", alt: "Mon image", width: 90 %>
   <%# end %>
   <div id="sidebarCollapse">
-    <i class="fas fa-bars"></i>
+    <div id="burger-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div>
+      <%= link_to root_path, class: "logo" do %>
+        <h3>suprest</h3>
+      <% end %>
+    </div>
   </div>
 
 
