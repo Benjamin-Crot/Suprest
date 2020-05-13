@@ -27,9 +27,6 @@
 //   display: none;
 // }
 
-#sidebarCollapse{
-  display: none;
-}
 
 #dismiss {
   display: none;
@@ -40,6 +37,21 @@
   right: 21px;
   padding: 10px;
   font-size: 26px;
+}
+
+.logo{
+  h3{
+    font-size: 37px;
+    font-family: 'DM Serif Display', serif;
+    color: black;
+    margin-left: 10px;
+    // margin-bottom: -3px;
+    // padding-bottom: 3px;
+    // background: -webkit-linear-gradient(#491fde, #9041f9);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+
+  }
 }
 
 #sidebar {
@@ -95,15 +107,7 @@
       margin-right: auto;
     }
 
-    .logo{
-      h3{
-        font-size: 43px;
-        background: -webkit-linear-gradient(#491fde, #9041f9);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
 
-      }
-    }
 
     .account-dashboard{
       display: flex;
@@ -226,9 +230,9 @@
       // width: 100%;
     }
 
-    #logout{
-      right: 0px;
-    }
+    // #logout{
+    //   right: 0px;
+    // }
 
     .content.active {
       overflow: hidden;
@@ -239,7 +243,7 @@
     }
 
     #sidebarCollapse{
-      display: block;
+      display: flex;
     }
 
     .navbar-lewagon{
